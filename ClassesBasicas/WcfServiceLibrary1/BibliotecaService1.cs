@@ -9,10 +9,10 @@ using ClassesBasicas.Livro;
 using ClassesBasicas.Pagamento;
 using ClassesBasicas.Usuario;
 
-namespace WcfServiceLibrary1
+namespace WcfBiblioteca
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
-    public class Service1 : IService
+    public class BibliotecaService1 : IBibliotecaService1
     {
         public void AlterarAluguel(AluguelBC a)
         {

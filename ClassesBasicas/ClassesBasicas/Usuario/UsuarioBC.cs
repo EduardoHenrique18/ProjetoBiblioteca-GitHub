@@ -11,10 +11,10 @@ namespace ClassesBasicas.Usuario
 {
     public class UsuarioBC
     {
-        private char cpfLeitor;
-        private char nomeLeitor;
-        private char dtNascimento;
-        private char nmTelefone;
+        private String cpfLeitor;
+        private String nomeLeitor;
+        private String dtNascimento;
+        private String nmTelefone;
         private int multa;
         private Boolean status;
 
@@ -29,10 +29,10 @@ namespace ClassesBasicas.Usuario
             this.Multa = 0;
         }
 
-        public char CpfLeitor { get => cpfLeitor; set => cpfLeitor = value; }
-        public char NomeLeitor { get => nomeLeitor; set => nomeLeitor = value; }
-        public char DtNascimento { get => dtNascimento; set => dtNascimento = value; }
-        public char NmTelefone { get => nmTelefone; set => nmTelefone = value; }
+        public String CpfLeitor { get => cpfLeitor; set => cpfLeitor = value; }
+        public String NomeLeitor { get => nomeLeitor; set => nomeLeitor = value; }
+        public String DtNascimento { get => dtNascimento; set => dtNascimento = value; }
+        public String NmTelefone { get => nmTelefone; set => nmTelefone = value; }
         public int Multa { get => multa; set => multa = value; }
         public bool Status { get => status; set => status = value; }
         internal ICollection<AluguelBC> Aluguel { get => aluguel; set => aluguel = value; }

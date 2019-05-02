@@ -9,11 +9,11 @@ using ClassesBasicas.Aluguel;
 using ClassesBasicas.Pagamento;
 using ClassesBasicas.Usuario;
 
-namespace WcfServiceLibrary1
+namespace WcfBiblioteca
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IService
+    public interface IBibliotecaService1
     {
         [OperationContract]
         //CRUD----------------------------------------------------
