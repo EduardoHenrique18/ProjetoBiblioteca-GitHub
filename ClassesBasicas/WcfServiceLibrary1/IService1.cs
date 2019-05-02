@@ -4,6 +4,10 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using ClassesBasicas.Livro;
+using ClassesBasicas.Aluguel;
+using ClassesBasicas.Pagamento;
+using ClassesBasicas.Usuario;
 
 namespace WcfServiceLibrary1
 {
@@ -13,50 +17,50 @@ namespace WcfServiceLibrary1
     {
         [OperationContract]
         //CRUD----------------------------------------------------
-        void CadastrarLivro(Livro l);
+        void CadastrarLivro(LivroBC l);
         [OperationContract]
-        void AlterarLivro(Livro l);
+        void AlterarLivro(LivroBC l);
         [OperationContract]
-        List<Livro> ListarLivro(Livro filtro);
+        List<LivroBC> ListarLivro(LivroBC filtro);
         [OperationContract]
-        void DeletarLivro(Livro l);
+        void DeletarLivro(LivroBC l);
 
         [OperationContract]
-        void CadastrarUsuario(Usuario u);
+        void CadastrarUsuario(UsuarioBC u);
         [OperationContract]
-        void AlterarUsuario(Usuario u);
+        void AlterarUsuario(UsuarioBC u);
         [OperationContract]
-        List<Usuario> ListarUsuario(Usuario filtro);
+        List<UsuarioBC> ListarUsuario(UsuarioBC filtro);
         [OperationContract]
-        void DeletarUsuario(Usuario u);
+        void DeletarUsuario(UsuarioBC u);
 
         [OperationContract]
-        void CadastrarAluguel(Aluguel a);
+        void CadastrarAluguel(AluguelBC a);
         [OperationContract]
-        void AlterarAluguel(Aluguel a);
+        void AlterarAluguel(AluguelBC a);
         [OperationContract]
-        List<Aluguel> ListarAluguel(Aluguel filtro);
+        List<AluguelBC> ListarAluguel(AluguelBC filtro);
         [OperationContract]
-        void DeltetarAluguel(Aluguel a);
+        void DeltetarAluguel(AluguelBC a);
 
         [OperationContract]
-        void CadastrarPagamento(Pagamento p);
+        void CadastrarPagamento(PagamentoBC p);
         [OperationContract]
-        void AlterarPagamento(Pagamento p);
+        void AlterarPagamento(PagamentoBC p);
         [OperationContract]
-        List<Pagamento> ListarPagamento(Pagamento filtro);
+        List<PagamentoBC> ListarPagamento(PagamentoBC filtro);
         [OperationContract]
-        void DeletarPagamento(Pagamento p);
+        void DeletarPagamento(PagamentoBC p);
 
         //Metodos Funcionais
         [OperationContract]
-        void LancarMulta(Usuario u);
+        void LancarMulta(UsuarioBC u);
         [OperationContract]
-        void BaixaMulta(Usuario u);
+        void BaixaMulta(UsuarioBC u);
         [OperationContract]
-        void EmitirNF(Usuario u);
+        void EmitirNF(UsuarioBC u);
         [OperationContract]
-        void BloquearUsuario(Usuario u);
+        void BloquearUsuario(UsuarioBC u);
 
         // TODO: Add your service operations here
     }

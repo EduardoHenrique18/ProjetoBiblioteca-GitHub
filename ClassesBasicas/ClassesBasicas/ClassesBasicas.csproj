@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aluguel\Aluguel.cs" />
+    <Compile Include="Aluguel\AluguelBC.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="Livro\Livro.cs" />
-    <Compile Include="Pagamento\Pagamento.cs" />
+    <Compile Include="Livro\LivroBC.cs" />
+    <Compile Include="Pagamento\PagamentoBC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Usuario\Usuario.cs" />
+    <Compile Include="Usuario\UsuarioBC.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
