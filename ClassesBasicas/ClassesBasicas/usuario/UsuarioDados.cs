@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,32 +10,33 @@ using ClassesBasicas.conexao;
 
 namespace ClassesBasicas.Usuario
 {
-    class UsuarioDados : Conexao, IUsuarioInterface
+    public class UsuarioDados : Conexao, IUsuarioInterface
     {
-        public void AlterarProduto(UsuarioBC u)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CadastrarUsuario(UsuarioBC u)
+        public void AlterarUsuario(UsuarioBC u)
         {
             try
             {
                 //abrir a conexão
                 this.AbrirConexao();
-                string sql = "insert into Usuario (cpfUsuario, nomeUsuario, dt_NascUsuario) ";
-                sql += "values(@cpfUsuario, @nomeUsuario, @dt_NascUsuario)";
+                string sql = "UPDATE Usuario SET nome_Usuario = @nome_Usuario, dt_Nasc_Usuario = @dt_Nasc_Usuario,  ";
+                sql += "nm_Telefone = @nm_Telefone, status_Usuario = @status_Usuario WHERE cpf_usuario = @cpf_usuario";
                 //instrucao a ser executada
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
+    
+                cmd.Parameters.Add("@nome_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@nome_Usuario"].Value = u.NomeUsuario;
 
-                cmd.Parameters.Add("@cpfUsuario", SqlDbType.VarChar);
-                cmd.Parameters["@cpfUsuario"].Value = u.CpfLeitor;
+                cmd.Parameters.Add("@dt_Nasc_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@dt_Nasc_Usuario"].Value = u.DtNascimento;
 
-                cmd.Parameters.Add("@nomeUsuario", SqlDbType.VarChar);
-                cmd.Parameters["@nomeUsuario"].Value = u.NomeLeitor;
+                cmd.Parameters.Add("@nm_telefone", SqlDbType.VarChar);
+                cmd.Parameters["@nm_telefone"].Value = u.NmTelefone;
 
-                cmd.Parameters.Add("@dt_NascUsuario", SqlDbType.VarChar);
-                cmd.Parameters["@dt_NascUsuario"].Value = u.DtNascimento;              
+                cmd.Parameters.Add("@status_usuario", SqlDbType.VarChar);
+                cmd.Parameters["@status_usuario"].Value = u.Status;
+
+                cmd.Parameters.Add("@cpf_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@cpf_Usuario"].Value = u.CpfUsuario;
 
                 //executando a instrucao 
                 cmd.ExecuteNonQuery();
@@ -45,18 +47,179 @@ namespace ClassesBasicas.Usuario
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao conecar e inserir " + ex.Message);
+                throw new Exception("Erro ao conectar e alterar " + ex.Message);
             }
         }
 
-        public List<UsuarioBC> ListarProdutos(UsuarioBC u)
+        public void CadastrarUsuario(UsuarioBC u)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //abrir a conexão
+                this.AbrirConexao();
+                string sql = "insert into Usuario (cpf_Usuario, nome_Usuario, dt_Nasc_Usuario, nm_Telefone, status_Usuario) ";
+                sql += "values(@cpf_Usuario, @nome_Usuario, @dt_Nasc_Usuario, @nm_Telefone, @status_Usuario)";
+                //instrucao a ser executada
+                SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
+
+                cmd.Parameters.Add("@cpf_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@cpf_Usuario"].Value = u.CpfUsuario;
+
+                cmd.Parameters.Add("@nome_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@nome_Usuario"].Value = u.NomeUsuario;
+
+                cmd.Parameters.Add("@dt_Nasc_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@dt_Nasc_Usuario"].Value = u.DtNascimento;
+
+                cmd.Parameters.Add("@nm_telefone", SqlDbType.VarChar);
+                cmd.Parameters["@nm_telefone"].Value = u.NmTelefone;
+
+                cmd.Parameters.Add("@status_usuario", SqlDbType.VarChar);
+                cmd.Parameters["@status_usuario"].Value = u.Status;
+
+
+                //executando a instrucao 
+                cmd.ExecuteNonQuery();
+                //liberando a memoria 
+                cmd.Dispose();
+                //fechando a conexao
+                this.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao conectar e inserir " + ex.Message);
+            }
         }
 
-        public void RemoverProduto(UsuarioBC u)
+        public List<UsuarioBC> ListarUsuario(UsuarioBC filtro)
         {
-            throw new NotImplementedException();
+            List<UsuarioBC> retorno = new List<UsuarioBC>();
+
+            
+            //instrução sql correspondente a inserção do aluno
+            String sql = " select u.cpf_usuario, u.nome_usuario, u.dt_nasc_usuario, u.nm_telefone, u.status_usuario, u.endereco_Usuario, u.sexo";
+            sql += " from usuario as u ";
+            sql += " Where d.cpf_doador IS NOT NULL ";
+
+            if (filtro.CpfUsuario != null && filtro.CpfUsuario.Trim().Equals("") == false)
+            {
+                sql += " and u.cpf_usuario like @cpf_usuario ";
+            }
+            if (filtro.NomeUsuario != null && filtro.NomeUsuario.Trim().Equals("") == false)
+            {
+                sql += " and u.nome_usuario like @nome_usuario ";
+            }
+            if (filtro.DtNascimento != null && filtro.DtNascimento.Trim().Equals("") == false)
+            {
+                sql += " and u.dt_nasc_usuario like @dt_nasc_usuario ";
+            }
+            if (filtro.NmTelefone != null && filtro.NmTelefone.Trim().Equals("") == false)
+            {
+                sql += " and u.nm_Telefone like @nm_Telefone ";
+            }
+            if (filtro.Status.ToString() != null && filtro.Status.ToString().Trim().Equals("") == false)
+            {
+                sql += " and u.status_Usuario like @status_Usuario ";
+            }
+            if (filtro.Endereco != null && filtro.Endereco.Trim().Equals("") == false)
+            {
+                sql += " and u.endereco_Usuario like @endereco_Usuario ";
+            }
+            if (filtro.Sexo != null && filtro.Sexo.Trim().Equals("") == false)
+            {
+                sql += " and u.sexo like @sexo ";
+            }
+
+            //abrir a conexão
+            this.AbrirConexao();
+            //instrucao a ser executada
+            SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
+
+            if (filtro.CpfUsuario != null && filtro.CpfUsuario.Trim().Equals("") == false)
+            {
+                cmd.Parameters.Add("@cpf_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@cpf_Usuario"].Value = "%" + filtro.CpfUsuario + "%";                
+            }                       
+            if (filtro.NomeUsuario != null && filtro.NomeUsuario.Trim().Equals("") == false)
+            {
+                cmd.Parameters.Add("@nome_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@nome_Usuario"].Value = "%" + filtro.NomeUsuario + "%";
+            }
+            if (filtro.DtNascimento != null && filtro.DtNascimento.Trim().Equals("") == false)
+            {
+                cmd.Parameters.Add("@dt_Nasc_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@dt_Nasc_Usuario"].Value = "%" + filtro.DtNascimento + "%";
+            }
+            if (filtro.NmTelefone != null && filtro.NmTelefone.Trim().Equals("") == false)
+            {
+                cmd.Parameters.Add("@nm_Telefone", SqlDbType.VarChar);
+                cmd.Parameters["@nm_Telefone"].Value = "%" + filtro.NmTelefone + "%";
+            }
+            if (filtro.Status.ToString() != null && filtro.Status.ToString().Trim().Equals("") == false)
+            {
+                cmd.Parameters.Add("@status_usuario", SqlDbType.Int);
+                cmd.Parameters["@status_usuario"].Value = "%" + filtro.Status + "%";
+            }
+            if (filtro.Endereco != null && filtro.Endereco.Trim().Equals("") == false)
+            {
+                cmd.Parameters.Add("@endereco_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@endereco_Usuario"].Value = "%" + filtro.Endereco + "%";
+            }
+            if (filtro.Sexo != null && filtro.Sexo.Trim().Equals("") == false)
+            {
+                cmd.Parameters.Add("@sexo", SqlDbType.VarChar);
+                cmd.Parameters["@sexo"].Value = "%" + filtro.Sexo + "%";
+            }
+            cmd.ExecuteNonQuery();
+
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            while (rd.NextResult())
+            {
+                UsuarioBC usuario = new UsuarioBC();
+                usuario.CpfUsuario = (rd.GetString(1));
+                usuario.NomeUsuario = (rd.GetString(2));
+                usuario.DtNascimento = (rd.GetString(3));
+                usuario.NmTelefone = (rd.GetString(4));
+                usuario.Status = (rd.GetInt32(5));
+                usuario.Endereco = (rd.GetString(6));
+                usuario.Sexo = (rd.GetString(7));
+                retorno.Add(usuario);
+            }
+
+            return retorno;
+            
+
+
+
+
+        }
+
+        public void RemoverUsuario(UsuarioBC u)
+        {
+            try
+            {
+                //abrir a conexão
+                this.AbrirConexao();
+                string sql = "DELETE FROM Usuario WHERE cpf_usuario = @cpf_usuario";                
+                //instrucao a ser executada
+                SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
+
+                cmd.Parameters.Add("@cpf_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@cpf_Usuario"].Value = u.CpfUsuario;
+               
+                //executando a instrucao 
+                cmd.ExecuteNonQuery();
+                //liberando a memoria 
+                cmd.Dispose();
+                //fechando a conexao
+                this.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao conectar e remover " + ex.Message);
+            }
         }
     }
+    
 }

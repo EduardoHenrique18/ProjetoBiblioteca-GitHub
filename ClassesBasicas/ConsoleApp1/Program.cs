@@ -13,11 +13,16 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             UsuarioBC usuario = new UsuarioBC();
-            usuario.CpfLeitor = "123456";
-            usuario.NomeLeitor = "joana";
-            usuario.DtNascimento = "16/01/2000";
+            usuario.CpfUsuario = "125966789";
+            usuario.NomeUsuario = "eduardoow";
+            usuario.Sexo = "masculino";
+            usuario.NmTelefone = "995923931";
+            usuario.Endereco = "av. sao paulo";
+            usuario.DtNascimento = "16012000";
             UsuarioDados dao = new UsuarioDados();
-            dao.CadastrarUsuario(usuario);
+            Console.WriteLine(dao.ListarUsuario(usuario));
+            Console.ReadKey();
+
         }
     }
 }

@@ -10,8 +10,8 @@ namespace ClassesBasicas.Usuario
     public interface IUsuarioInterface
     {
         void CadastrarUsuario(UsuarioBC u);
-        void AlterarProduto(UsuarioBC u);
-        void RemoverProduto(UsuarioBC u);
-        List<UsuarioBC> ListarProdutos(UsuarioBC u);
+        void AlterarUsuario(UsuarioBC u);
+        void RemoverUsuario(UsuarioBC u);
+        List<UsuarioBC> ListarUsuario(UsuarioBC filtro);
     }
 }

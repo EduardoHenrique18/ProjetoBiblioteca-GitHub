@@ -11,12 +11,13 @@ namespace ClassesBasicas.Usuario
 {
     public class UsuarioBC
     {
-        private String cpfLeitor;
-        private String nomeLeitor;
+        private String cpfUsuario;
+        private String nomeUsuario;
         private String dtNascimento;
         private String nmTelefone;
-        private int multa;
-        private Boolean status;
+        private int status;
+        private String endereco;
+        private String sexo;
 
        
         private ICollection<AluguelBC> aluguel;
@@ -25,42 +26,18 @@ namespace ClassesBasicas.Usuario
         
         public UsuarioBC()
         {
-            this.Status = true;
-            this.Multa = 0;
+            this.Status = 0;          
         }
 
-        public String CpfLeitor { get => cpfLeitor; set => cpfLeitor = value; }
-        public String NomeLeitor { get => nomeLeitor; set => nomeLeitor = value; }
+        public String CpfUsuario { get => cpfUsuario; set => cpfUsuario = value; }
+        public String NomeUsuario { get => nomeUsuario; set => nomeUsuario = value; }
         public String DtNascimento { get => dtNascimento; set => dtNascimento = value; }
         public String NmTelefone { get => nmTelefone; set => nmTelefone = value; }
-        public int Multa { get => multa; set => multa = value; }
-        public bool Status { get => status; set => status = value; }
+        public int Status { get => status; set => status = value; }
+        public string Endereco { get => endereco; set => endereco = value; }
+        public string Sexo { get => sexo; set => sexo = value; }
         internal ICollection<AluguelBC> Aluguel { get => aluguel; set => aluguel = value; }
         internal ICollection<PagamentoBC> Pagamento { get => pagamento; set => pagamento = value; }
-
-        public void cadastrarUsuario()
-        {
-
-        }
-
-        public void realizarEmprestimo()
-        {
-
-        }
-
-        public void realizarDevolucao()
-        {
-
-        }
-
-        public void listarUsuario()
-        {
-
-        }
-
-        public void deletarUsuario()
-        {
-
-        }
+       
     }
 }

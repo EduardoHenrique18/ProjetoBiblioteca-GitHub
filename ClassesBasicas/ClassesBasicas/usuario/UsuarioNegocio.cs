@@ -8,7 +8,7 @@ namespace ClassesBasicas.Usuario
 {
     class UsuarioNegocio : IUsuarioInterface
     {
-        public void AlterarProduto(UsuarioBC u)
+        public void AlterarUsuario(UsuarioBC u)
         {
             throw new NotImplementedException();
         }
@@ -18,12 +18,12 @@ namespace ClassesBasicas.Usuario
             throw new NotImplementedException();
         }
 
-        public List<UsuarioBC> ListarProdutos(UsuarioBC u)
+        public List<UsuarioBC> ListarUsuario(UsuarioBC u)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoverProduto(UsuarioBC u)
+        public void RemoverUsuario(UsuarioBC u)
         {
             throw new NotImplementedException();
         }

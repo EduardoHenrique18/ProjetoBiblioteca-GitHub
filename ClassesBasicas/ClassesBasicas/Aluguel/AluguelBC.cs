@@ -11,7 +11,7 @@ namespace ClassesBasicas.Aluguel
 {
     public class AluguelBC
     {
-        private char dtEmprestimo;
+        private String dtEmprestimo;
         private int dtEntrega;
 
         private ICollection<LivroBC> livro;
@@ -23,7 +23,7 @@ namespace ClassesBasicas.Aluguel
             
         }
 
-        public char DtEmprestimo { get => dtEmprestimo; set => dtEmprestimo = value; }
+        public String DtEmprestimo { get => dtEmprestimo; set => dtEmprestimo = value; }
         public int DtEntrega { get => dtEntrega; set => dtEntrega = value; }
         internal ICollection<LivroBC> Livro { get => livro; set => livro = value; }
         internal UsuarioBC Usuario { get => usuario; set => usuario = value; }
