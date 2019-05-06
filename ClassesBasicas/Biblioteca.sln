@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassesBasicas", "ClassesBa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfBiblioteca", "WcfServiceLibrary1\WcfBiblioteca.csproj", "{C395FC53-E88B-4A2A-8CE4-8027B9A1E72F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{AF02A42F-70A2-410D-BDE6-6F700DE2D66D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teste", "ConsoleApp1\Teste.csproj", "{AF02A42F-70A2-410D-BDE6-6F700DE2D66D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

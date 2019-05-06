@@ -14,13 +14,14 @@ namespace ConsoleApp1
         {
             UsuarioBC usuario = new UsuarioBC();
             usuario.CpfUsuario = "125966789";
-            usuario.NomeUsuario = "eduardoow";
-            usuario.Sexo = "masculino";
-            usuario.NmTelefone = "995923931";
-            usuario.Endereco = "av. sao paulo";
-            usuario.DtNascimento = "16012000";
+            
             UsuarioDados dao = new UsuarioDados();
-            Console.WriteLine(dao.ListarUsuario(usuario));
+            List<UsuarioBC> listar = new List<UsuarioBC>();
+            listar = dao.ListarUsuario(usuario);           
+            foreach (UsuarioBC u in listar)
+            {
+                Console.WriteLine(u.CpfUsuario + " " + u.NomeUsuario + " " + u.Sexo +" " + u.NmTelefone +" " + u.Endereco +" " + u.DtNascimento +" " + u.Status);
+            }
             Console.ReadKey();
 
         }

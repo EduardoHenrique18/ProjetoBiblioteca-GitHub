@@ -93,13 +93,14 @@ namespace ClassesBasicas.Usuario
 
         public List<UsuarioBC> ListarUsuario(UsuarioBC filtro)
         {
-            List<UsuarioBC> retorno = new List<UsuarioBC>();
-
+            List<UsuarioBC> retorno = new List<UsuarioBC>();       
             
+            //abrir a conexão
+            this.AbrirConexao();
             //instrução sql correspondente a inserção do aluno
-            String sql = " select u.cpf_usuario, u.nome_usuario, u.dt_nasc_usuario, u.nm_telefone, u.status_usuario, u.endereco_Usuario, u.sexo";
+            String sql = "select u.cpf_usuario, u.nome_usuario, u.dt_nasc_usuario, u.nm_telefone, u.status_usuario, u.endereco_Usuario, u.sexo";
             sql += " from usuario as u ";
-            sql += " Where d.cpf_doador IS NOT NULL ";
+            sql += "Where u.cpf_usuario IS NOT NULL ";
 
             if (filtro.CpfUsuario != null && filtro.CpfUsuario.Trim().Equals("") == false)
             {
@@ -130,8 +131,7 @@ namespace ClassesBasicas.Usuario
                 sql += " and u.sexo like @sexo ";
             }
 
-            //abrir a conexão
-            this.AbrirConexao();
+            
             //instrucao a ser executada
             SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
@@ -157,8 +157,8 @@ namespace ClassesBasicas.Usuario
             }
             if (filtro.Status.ToString() != null && filtro.Status.ToString().Trim().Equals("") == false)
             {
-                cmd.Parameters.Add("@status_usuario", SqlDbType.Int);
-                cmd.Parameters["@status_usuario"].Value = "%" + filtro.Status + "%";
+                cmd.Parameters.Add("@status_usuario", SqlDbType.VarChar);
+                cmd.Parameters["@status_usuario"].Value = "%" + filtro.Status.ToString() + "%";
             }
             if (filtro.Endereco != null && filtro.Endereco.Trim().Equals("") == false)
             {
@@ -170,20 +170,20 @@ namespace ClassesBasicas.Usuario
                 cmd.Parameters.Add("@sexo", SqlDbType.VarChar);
                 cmd.Parameters["@sexo"].Value = "%" + filtro.Sexo + "%";
             }
-            cmd.ExecuteNonQuery();
+            //cmd.ExecuteNonQuery();
 
             SqlDataReader rd = cmd.ExecuteReader();
 
-            while (rd.NextResult())
+            while (rd.Read())
             {
                 UsuarioBC usuario = new UsuarioBC();
-                usuario.CpfUsuario = (rd.GetString(1));
-                usuario.NomeUsuario = (rd.GetString(2));
-                usuario.DtNascimento = (rd.GetString(3));
-                usuario.NmTelefone = (rd.GetString(4));
-                usuario.Status = (rd.GetInt32(5));
-                usuario.Endereco = (rd.GetString(6));
-                usuario.Sexo = (rd.GetString(7));
+                usuario.CpfUsuario = rd["cpf_usuario"].ToString(); //(rd.GetString(0));
+                usuario.NomeUsuario = rd["nome_Usuario"].ToString(); //(rd.GetString(1));
+                usuario.DtNascimento = rd["dt_Nasc_Usuario"].ToString(); //(rd.GetString(2));
+                usuario.NmTelefone = rd["nm_Telefone"].ToString(); //(rd.GetString(3));
+                usuario.Status = Convert.ToInt32(rd["status_usuario"]); //(rd.GetInt32(4));
+                usuario.Endereco = rd["endereco_Usuario"].ToString(); //(rd.GetString(5));
+                usuario.Sexo = rd["sexo"].ToString(); //(rd.GetString(6));
                 retorno.Add(usuario);
             }
 
