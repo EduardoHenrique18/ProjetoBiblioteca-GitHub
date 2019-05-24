@@ -12,7 +12,6 @@ namespace ClassesBasicas.Livro
         private int codLivro;
         private String tituloLivro;
         private String editoraLivro;
-        private int qntLivro;
         private int situaçao;
         private String autor;
 
@@ -20,30 +19,16 @@ namespace ClassesBasicas.Livro
        
         public LivroBC()
         {
-            
+            this.aluguel = new AluguelBC();
         }
 
         public int CodLivro { get => codLivro; set => codLivro = value; }
         public String TituloLivro { get => tituloLivro; set => tituloLivro = value; }
         public String EditoraLivro { get => editoraLivro; set => editoraLivro = value; }
-        public int QntLivro { get => qntLivro; set => qntLivro = value; }
         public int Situaçao { get => situaçao; set => situaçao = value; }
         public String Autor { get => autor; set => autor = value; }
         internal AluguelBC Aluguel { get => aluguel; set => aluguel = value; }
 
-        public void cadastrarLivro()
-        {
-
-        }
-
-        public void listarLivro()
-        {
-
-        }
-
-        public void deletarLivro()
-        {
-
-        }
+        
     }
 }
