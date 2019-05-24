@@ -9,74 +9,29 @@ namespace ClassesBasicas.Livro
 {
     class LivroDados : Conexao, ILivroInterface
     {
-        public void AlterarProduto(LivroBC l)
-        {
-       
-            try
-            {
-                //abrir a conexão
-                this.AbrirConexao();
-                string sql = "UPDATE livros SET titulolivro = @titulolivro, editoralivro = @editoralivro,  ";
-                sql += "qtdlivro = @qtdlivro, situacao = @situacao, autor = @autor WHERE codlivro = @codlivro";
-                //instrucao a ser executada
-                SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
-    
-                cmd.Parameters.Add("@titulolivro", SqlDbType.VarChar);
-                cmd.Parameters["@titulolivro"].Value = l.TituloLivro;
-
-                cmd.Parameters.Add("@editoralivro", SqlDbType.VarChar);
-                cmd.Parameters["@editoralivro"].Value = l.EditoraLivro;
-
-                cmd.Parameters.Add("@qtdlivro", SqlDbType.Integer);
-                cmd.Parameters["@qtdlivro"].Value = l.QntLivro;
-
-                cmd.Parameters.Add("@situacao", SqlDbType.Integer);
-                cmd.Parameters["@situacao"].Value = l.Situaçao;
-
-                cmd.Parameters.Add("@autor", SqlDbType.VarChar);
-                cmd.Parameters["@autor"].Value = l.Autor;
-
-                cmd.Parameters.Add("@codlivro", SqlDbType.Integer);
-                cmd.Parameters["@codlivro"].Value = l.CodLivro;
-
-                //executando a instrucao 
-                cmd.ExecuteNonQuery();
-                //liberando a memoria 
-                cmd.Dispose();
-                //fechando a conexao
-                this.FecharConexao();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erro ao conectar e alterar " + ex.Message);
-            }
-        }
-
+        #region Método Cadastrar
         public void CadastrarProduto(LivroBC l)
         {
             try
             {
                 //abrir a conexão
                 this.AbrirConexao();
-                string sql = "insert into livros ( titulolivro, editoralivro, qtdlivro, situacao,autor)";
-                sql += "values(@titulolivro, @editoralivro, @qtdlivro, @situacao, @autor)";
+                string sql = "insert into Livro (titulo_Livro, editora_Livro, situacao_Livro, autor_Livro) ";
+                sql += "values (@titulo_Livro, @editora_Livro, @situacao_Livro, @autor_Livro)";
                 //instrucao a ser executada
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
-                cmd.Parameters.Add("@titulolivro", SqlDbType.VarChar);
-                cmd.Parameters["@titulolivro"].Value = l.TituloLivro;
+                cmd.Parameters.Add("@@titulo_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@titulo_Livro"].Value = l.TituloLivro;
 
-                cmd.Parameters.Add("@editoralivro", SqlDbType.VarChar);
-                cmd.Parameters["@editoralivro"].Value = l.EditoraLivro ;
+                cmd.Parameters.Add("@editora_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@editora_Livro"].Value = l.EditoraLivro ;
 
-                cmd.Parameters.Add("@qtdlivro", SqlDbType.Integer);
-                cmd.Parameters["@qtdlivro"].Value = l.QntLivro;
+                cmd.Parameters.Add("@situacao_Livro", SqlDbType.Integer);
+                cmd.Parameters["@situacao_Livro"].Value = l.Situaçao;
 
-                cmd.Parameters.Add("@situacao", SqlDbType.Integer);
-                cmd.Parameters["@situacao"].Value = l.Situaçao;
-
-                cmd.Parameters.Add("@autor", SqlDbType.VarChar);
-                cmd.Parameters["@autor"].Value = l.Autor;
+                cmd.Parameters.Add("@autor_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@autor_Livro"].Value = l.Autor;
 
 
                 //executando a instrucao 
@@ -91,7 +46,49 @@ namespace ClassesBasicas.Livro
                 throw new Exception("Erro ao conectar e inserir " + ex.Message);
             }
         }
+        #endregion
+        #region Método Alterar
+        public void AlterarProduto(LivroBC l)
+        {
+       
+            try
+            {
+                //abrir a conexão
+                this.AbrirConexao();
+                string sql = "UPDATE Livro SET titulo_Livro = @titulo_Livro, editora_Livro = @editora_Livro,  ";
+                sql += "situacao_Livro = @situacao_Livro, autor_Livro = @autor_Livro WHERE id_Livro = @id_Livro";
+                //instrucao a ser executada
+                SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
+    
+                cmd.Parameters.Add("@titulo_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@titulo_Livro"].Value = l.TituloLivro;
 
+                cmd.Parameters.Add("@editora_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@editora_Livro"].Value = l.EditoraLivro;
+
+                cmd.Parameters.Add("situacao_Livro", SqlDbType.Integer);
+                cmd.Parameters["situacao_Livro"].Value = l.Situaçao;
+
+                cmd.Parameters.Add("@autor_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@autor_Livro"].Value = l.Autor;
+
+                cmd.Parameters.Add("@id_Livro", SqlDbType.Integer);
+                cmd.Parameters["@id_Livro"].Value = l.CodLivro;
+
+                //executando a instrucao 
+                cmd.ExecuteNonQuery();
+                //liberando a memoria 
+                cmd.Dispose();
+                //fechando a conexao
+                this.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao conectar e alterar " + ex.Message);
+            }
+        }
+        #endregion
+        #region Método Listar
         public List<LivroBC> ListarProdutos(LivroBC filtro)
         {
             List<LivroBC> retorno = new List<LivroBC>();       
@@ -99,33 +96,30 @@ namespace ClassesBasicas.Livro
             //abrir a conexão
             this.AbrirConexao();
             //instrução sql correspondente a inserção do aluno
-            String sql = "select l.codlivro, l.titulolivro, l.editoralivro, l.qtdlivro, l.situacao, l.autor";
-            sql += " from livros as l ";
-            sql += "Where l.codlivro IS NOT NULL ";
+            String sql = "select l.id_Livro, l.titulo_Livro, l.editora_Livro, l.situacao_Livro, l.autor_Livro";
+            sql += " from Livro as l ";
+            sql += "Where l.id_Livro IS NOT NULL ";
 
             if (filtro.CodLivro.ToString != null && filtro.CodLivro.ToString.Trim().Equals("") == false)
             {
-                sql += " and l.codlivro like @codlivro ";
+                sql += " and l.id_Livro like @id_Livro ";
             }
             if (filtro.TituloLivro != null && filtro.TituloLivro.Trim().Equals("") == false)
             {
-                sql += " and l.titulolivro like @titulolivro ";
+                sql += " and l.titulo_Livro like @titulo_Livro ";
             }
             if (filtro.EditoraLivro != null && filtro.EditoraLivro.Trim().Equals("") == false)
             {
-                sql += " and l.editoralivro like @editoralivro ";
+                sql += " and l.editora_Livro like @editora_Livro ";
             }
-            if (filtro.QntLivro != null && filtro.QntLivro.Trim().Equals("") == false)
-            {
-                sql += " and l.qtdlivro like @qtdlivro ";
-            }
+
             if (filtro.Situaçao.ToString() != null && filtro.Situaçao.ToString().Trim().Equals("") == false)
             {
-                sql += " and l.situacao like @situacao ";
+                sql += " and l.situacao_Livro like @situacao_Livro ";
             }
             if (filtro.Autor != null && filtro.Autor.Trim().Equals("") == false)
             {
-                sql += " and l.autor like @autor ";
+                sql += " and l.autor_Livro like @autor_Livro ";
             }
            
 
@@ -135,33 +129,28 @@ namespace ClassesBasicas.Livro
 
             if (filtro.CodLivro.ToString != null && filtro.CodLivro.Trim().Equals("") == false)
             {
-                cmd.Parameters.Add("@codlivro", SqlDbType.VarChar);
-                cmd.Parameters["@codlivro"].Value = "%" + filtro.CodLivro.ToString + "%";                
+                cmd.Parameters.Add("id_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@id_Livro"].Value = "%" + filtro.CodLivro.ToString + "%";                
             }                       
             if (filtro.TituloLivro != null && filtro.TituloLivro.Trim().Equals("") == false)
             {
-                cmd.Parameters.Add("@titulolivro", SqlDbType.VarChar);
-                cmd.Parameters["@titulolivro"].Value = "%" + filtro.TituloLivro + "%";
+                cmd.Parameters.Add("@titulo_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@titulo_Livro"].Value = "%" + filtro.TituloLivro + "%";
             }
             if (filtro.EditoraLivro != null && filtro.EditoraLivro.Trim().Equals("") == false)
             {
-                cmd.Parameters.Add("@editoralivro", SqlDbType.VarChar);
-                cmd.Parameters["@editoralivro"].Value = "%" + filtro.EditoraLivro + "%";
-            }
-            if (filtro.QntLivro.ToString != null && filtro.QntLivro.ToString.Trim().Equals("") == false)
-            {
-                cmd.Parameters.Add("@qtdlivro", SqlDbType.VarChar);
-                cmd.Parameters["@qtdlivro"].Value = "%" + filtro.QntLivro.ToString + "%";
+                cmd.Parameters.Add("@editora_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@editora_Livro"].Value = "%" + filtro.EditoraLivro + "%";
             }
             if (filtro.Situaçao.ToString() != null && filtro.Situaçao.ToString().Trim().Equals("") == false)
             {
-                cmd.Parameters.Add("@situacao", SqlDbType.VarChar);
-                cmd.Parameters["@situacao"].Value = "%" + filtro.Situaçao.ToString() + "%";
+                cmd.Parameters.Add("@situacao_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@situacao_Livro"].Value = "%" + filtro.Situaçao.ToString() + "%";
             }
             if (filtro.Autor != null && filtro.Autor.Trim().Equals("") == false)
             {
-                cmd.Parameters.Add("@autor", SqlDbType.VarChar);
-                cmd.Parameters["@autor"].Value = "%" + filtro.Autor + "%";
+                cmd.Parameters.Add("@autor_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@autor_Livro"].Value = "%" + filtro.Autor + "%";
             }
            
             //cmd.ExecuteNonQuery();
@@ -171,12 +160,11 @@ namespace ClassesBasicas.Livro
             while (rd.Read())
             {
                 LivroBC livro = new LivroBC();
-                livro.CodLivro = Convert.ToInt32(rd["codlivro"]); //(rd.GetString(0));
-                livro.TituloLivro = rd["titulolivro"].ToString(); //(rd.GetString(1));
-                livro.EditoraLivro = rd["editoralivro"].ToString(); //(rd.GetString(2));
-                livro.QntLivro = Convert.ToInt32(rd["qtdlivro"]); //(rd.GetString(3));
-                livro.Situaçao = Convert.ToInt32(rd["situacao"]); //(rd.GetInt32(4));
-                livro.Autor = rd["autor"].ToString(); //(rd.GetString(5));
+                livro.CodLivro = Convert.ToInt32(rd["id_Livro"]); //(rd.GetString(0));
+                livro.TituloLivro = rd["titulo_Livro"].ToString(); //(rd.GetString(1));
+                livro.EditoraLivro = rd["editora_Livro"].ToString(); //(rd.GetString(2));
+                livro.Situaçao = Convert.ToInt32(rd["situacao_Livro"]); //(rd.GetInt32(4));
+                livro.Autor = rd["autor_Livro"].ToString(); //(rd.GetString(5));
                 retorno.Add(livro);
             }
 
@@ -184,19 +172,20 @@ namespace ClassesBasicas.Livro
             
 
         }
-
+        #endregion
+        #region Método Remover
         public void RemoverProduto(LivroBC l)
         {
             try
             {
                 //abrir a conexão
                 this.AbrirConexao();
-                string sql = "DELETE FROM livros WHERE codlivro = @codlivro";                
+                string sql = "DELETE FROM Livro WHERE id_Livro = @id_Livro";                
                 //instrucao a ser executada
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
-                cmd.Parameters.Add("@codlivro", SqlDbType.Integer);
-                cmd.Parameters["@codlivro"].Value = l.CodLivro;
+                cmd.Parameters.Add("@id_Livro", SqlDbType.Integer);
+                cmd.Parameters["@id_Livro"].Value = l.CodLivro;
                
                 //executando a instrucao 
                 cmd.ExecuteNonQuery();
@@ -210,5 +199,6 @@ namespace ClassesBasicas.Livro
                 throw new Exception("Erro ao conectar e remover " + ex.Message);
             }
         }
+        #endregion
     }
 }
