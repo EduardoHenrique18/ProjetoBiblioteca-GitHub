@@ -8,9 +8,9 @@ namespace ClassesBasicas.Aluguel
 {
     interface IAluguelInterface
     {
-        void CadastrarProduto(AluguelBC a);
-        void AlterarProduto(AluguelBC a);
-        void RemoverProduto(AluguelBC a);
-        List<AluguelBC> ListarProdutos(AluguelBC a);
+        void cadastrarAluguel(AluguelBC a);
+       
+        void deletarAluguel(AluguelBC a);
+        List<AluguelBC> listarAluguel(AluguelBC a);
     }
 }

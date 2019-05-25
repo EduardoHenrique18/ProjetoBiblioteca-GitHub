@@ -12,9 +12,9 @@ namespace ClassesBasicas.Aluguel
     public class AluguelBC
     {
         private String dtEmprestimo;
-        private int dtEntrega;
+        private String dtEntrega;
 
-        private ICollection<LivroBC> livro;
+        private LivroBC livro;
         private UsuarioBC usuario;
 
      
@@ -24,8 +24,8 @@ namespace ClassesBasicas.Aluguel
         }
 
         public String DtEmprestimo { get => dtEmprestimo; set => dtEmprestimo = value; }
-        public int DtEntrega { get => dtEntrega; set => dtEntrega = value; }
-        internal ICollection<LivroBC> Livro { get => livro; set => livro = value; }
+        public String DtEntrega { get => dtEntrega; set => dtEntrega = value; }
+        internal LivroBC Livro { get => livro; set => livro = value; }
         internal UsuarioBC Usuario { get => usuario; set => usuario = value; }
 
         public void cadastrarAluguel()
