@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:56795/BibliotecaService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:56795/BibliotecaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:56795/BibliotecaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ClassesBasicas.Livro" />
+      <xsd:import schemaLocation="http://localhost:56795/BibliotecaService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" />
+      <xsd:import schemaLocation="http://localhost:56795/BibliotecaService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ClassesBasicas.Aluguel" />
+      <xsd:import schemaLocation="http://localhost:56795/BibliotecaService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/ClassesBasicas.Pagamento" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBibliotecaService_CadastrarLivro_InputMessage">
+    <wsdl:part name="parameters" element="tns:CadastrarLivro" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_CadastrarLivro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CadastrarLivroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_AlterarLivro_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlterarLivro" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_AlterarLivro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlterarLivroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_ListarLivro_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarLivro" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_ListarLivro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarLivroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_DeletarLivro_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletarLivro" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_DeletarLivro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletarLivroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_CadastrarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:CadastrarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_CadastrarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CadastrarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_AlterarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlterarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_AlterarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlterarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_ListarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_ListarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_DeletarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_DeletarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_CadastrarAluguel_InputMessage">
+    <wsdl:part name="parameters" element="tns:CadastrarAluguel" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_CadastrarAluguel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CadastrarAluguelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_AlterarAluguel_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlterarAluguel" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_AlterarAluguel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlterarAluguelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_ListarAluguel_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarAluguel" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_ListarAluguel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarAluguelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_DeltetarAluguel_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeltetarAluguel" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_DeltetarAluguel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeltetarAluguelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_CadastrarPagamento_InputMessage">
+    <wsdl:part name="parameters" element="tns:CadastrarPagamento" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_CadastrarPagamento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CadastrarPagamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_AlterarPagamento_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlterarPagamento" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_AlterarPagamento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlterarPagamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_ListarPagamento_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarPagamento" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_ListarPagamento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarPagamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_DeletarPagamento_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletarPagamento" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_DeletarPagamento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletarPagamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_LancarMulta_InputMessage">
+    <wsdl:part name="parameters" element="tns:LancarMulta" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_LancarMulta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LancarMultaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_BaixaMulta_InputMessage">
+    <wsdl:part name="parameters" element="tns:BaixaMulta" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_BaixaMulta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BaixaMultaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_EmitirNF_InputMessage">
+    <wsdl:part name="parameters" element="tns:EmitirNF" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_EmitirNF_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EmitirNFResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_BloquearUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:BloquearUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IBibliotecaService_BloquearUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BloquearUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBibliotecaService">
+    <wsdl:operation name="CadastrarLivro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/CadastrarLivro" message="tns:IBibliotecaService_CadastrarLivro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/CadastrarLivroResponse" message="tns:IBibliotecaService_CadastrarLivro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterarLivro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/AlterarLivro" message="tns:IBibliotecaService_AlterarLivro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/AlterarLivroResponse" message="tns:IBibliotecaService_AlterarLivro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarLivro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/ListarLivro" message="tns:IBibliotecaService_ListarLivro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/ListarLivroResponse" message="tns:IBibliotecaService_ListarLivro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletarLivro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/DeletarLivro" message="tns:IBibliotecaService_DeletarLivro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/DeletarLivroResponse" message="tns:IBibliotecaService_DeletarLivro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastrarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/CadastrarUsuario" message="tns:IBibliotecaService_CadastrarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/CadastrarUsuarioResponse" message="tns:IBibliotecaService_CadastrarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/AlterarUsuario" message="tns:IBibliotecaService_AlterarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/AlterarUsuarioResponse" message="tns:IBibliotecaService_AlterarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/ListarUsuario" message="tns:IBibliotecaService_ListarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/ListarUsuarioResponse" message="tns:IBibliotecaService_ListarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/DeletarUsuario" message="tns:IBibliotecaService_DeletarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/DeletarUsuarioResponse" message="tns:IBibliotecaService_DeletarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastrarAluguel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/CadastrarAluguel" message="tns:IBibliotecaService_CadastrarAluguel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/CadastrarAluguelResponse" message="tns:IBibliotecaService_CadastrarAluguel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterarAluguel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/AlterarAluguel" message="tns:IBibliotecaService_AlterarAluguel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/AlterarAluguelResponse" message="tns:IBibliotecaService_AlterarAluguel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarAluguel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/ListarAluguel" message="tns:IBibliotecaService_ListarAluguel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/ListarAluguelResponse" message="tns:IBibliotecaService_ListarAluguel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeltetarAluguel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/DeltetarAluguel" message="tns:IBibliotecaService_DeltetarAluguel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/DeltetarAluguelResponse" message="tns:IBibliotecaService_DeltetarAluguel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastrarPagamento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/CadastrarPagamento" message="tns:IBibliotecaService_CadastrarPagamento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/CadastrarPagamentoResponse" message="tns:IBibliotecaService_CadastrarPagamento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterarPagamento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/AlterarPagamento" message="tns:IBibliotecaService_AlterarPagamento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/AlterarPagamentoResponse" message="tns:IBibliotecaService_AlterarPagamento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPagamento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/ListarPagamento" message="tns:IBibliotecaService_ListarPagamento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/ListarPagamentoResponse" message="tns:IBibliotecaService_ListarPagamento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletarPagamento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/DeletarPagamento" message="tns:IBibliotecaService_DeletarPagamento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/DeletarPagamentoResponse" message="tns:IBibliotecaService_DeletarPagamento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LancarMulta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/LancarMulta" message="tns:IBibliotecaService_LancarMulta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/LancarMultaResponse" message="tns:IBibliotecaService_LancarMulta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BaixaMulta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/BaixaMulta" message="tns:IBibliotecaService_BaixaMulta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/BaixaMultaResponse" message="tns:IBibliotecaService_BaixaMulta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EmitirNF">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/EmitirNF" message="tns:IBibliotecaService_EmitirNF_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/EmitirNFResponse" message="tns:IBibliotecaService_EmitirNF_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BloquearUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBibliotecaService/BloquearUsuario" message="tns:IBibliotecaService_BloquearUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBibliotecaService/BloquearUsuarioResponse" message="tns:IBibliotecaService_BloquearUsuario_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBibliotecaService" type="tns:IBibliotecaService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CadastrarLivro">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/CadastrarLivro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterarLivro">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/AlterarLivro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarLivro">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/ListarLivro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletarLivro">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/DeletarLivro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastrarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/CadastrarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/AlterarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/ListarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/DeletarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastrarAluguel">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/CadastrarAluguel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterarAluguel">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/AlterarAluguel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarAluguel">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/ListarAluguel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeltetarAluguel">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/DeltetarAluguel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastrarPagamento">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/CadastrarPagamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterarPagamento">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/AlterarPagamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPagamento">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/ListarPagamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletarPagamento">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/DeletarPagamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LancarMulta">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/LancarMulta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BaixaMulta">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/BaixaMulta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EmitirNF">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/EmitirNF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BloquearUsuario">
+      <soap:operation soapAction="http://tempuri.org/IBibliotecaService/BloquearUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IBibliotecaService" binding="tns:BasicHttpBinding_IBibliotecaService">
+      <soap:address location="http://localhost:56795/BibliotecaService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

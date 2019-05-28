@@ -8,13 +8,13 @@ namespace ClassesBasicas.conexao
         //tipo responsável para se trabalhar com o sqlserver
         public SqlConnection sqlConn;
         //máquina no qual estará o banco de dados
-        private const string local = @"DESKTOP-J6QJMUF\SQLEXPRESS";
+        private const string local = "localhost";
         //nome do banco de dados no qual desejamos nos comunicar
-        private const string banco_de_dados = "biblioteca";
+        private const string banco_de_dados = "Biblioteca";
         //usuário que tenha os privilégios para utilizar o banco de dados
-        private const string usuario = "jonas1";
+        private const string usuario = "sa";
         //senha do usuario
-        private const string senha = "123";
+        private const string senha = "1123581321";
         #endregion
 
         //string de conexão obtida para o sql sever
