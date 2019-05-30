@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassesBasicas.Aluguel
 {
-    interface IAluguelInterface
+    public interface IAluguelInterface
     {
         void cadastrarAluguel(AluguelBC a);
         void alterarAluguel(AluguelBC a);

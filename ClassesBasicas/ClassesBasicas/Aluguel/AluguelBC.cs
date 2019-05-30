@@ -7,26 +7,27 @@ using ClassesBasicas.Livro;
 using ClassesBasicas.Usuario;
 
 
+
 namespace ClassesBasicas.Aluguel
 {
     public class AluguelBC
     {
-        private String dtEmprestimo;
-        private String dtEntrega;
-
+        private DateTime dtEmprestimo;
+        private DateTime dtEntrega;
         private LivroBC livro;
         private UsuarioBC usuario;
 
      
         public AluguelBC()
         {
-            
+            this.Livro = new LivroBC();
+            this.usuario = new UsuarioBC();
         }
 
-        public String DtEmprestimo { get => dtEmprestimo; set => dtEmprestimo = value; }
-        public String DtEntrega { get => dtEntrega; set => dtEntrega = value; }
-        internal LivroBC Livro { get => livro; set => livro = value; }
-        internal UsuarioBC Usuario { get => usuario; set => usuario = value; }
+        public DateTime DtEmprestimo { get => dtEmprestimo; set => dtEmprestimo = value; }
+        public DateTime DtEntrega { get => dtEntrega; set => dtEntrega = value; }
+        public LivroBC Livro { get => livro; set => livro = value; }
+        public UsuarioBC Usuario { get => usuario; set => usuario = value; }
 
         public void cadastrarAluguel()
         {

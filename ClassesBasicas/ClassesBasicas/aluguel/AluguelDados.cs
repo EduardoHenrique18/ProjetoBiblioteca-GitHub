@@ -9,7 +9,7 @@ using ClassesBasicas.conexao;
 
 namespace ClassesBasicas.Aluguel
 {
-    class AluguelDados : Conexao, IAluguelInterface
+    public class AluguelDados : Conexao, IAluguelInterface
     {
 
         #region Cadastrar
@@ -18,21 +18,21 @@ namespace ClassesBasicas.Aluguel
             try
             {
                 this.AbrirConexao();
-                String sql = "insert into aluguel (dtemprestimo,dtentrega,codlivro,cpf_usuario) values (@dtemprestimo,@dtentrega,@codlivro,@cpf_usuario)";
+                String sql = "insert into aluguel (dt_Emprestimo,dt_Entrega,cpf_Usuario,id_Livro) values (@dt_Empretimo,@dt_Entrega,@cpf_Usuario,@id_Livro)";
 
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
-                cmd.Parameters.Add("@dtemprestimo", SqlDbType.VarChar);
-                cmd.Parameters["@dtemprestimo"].Value = a.DtEmprestimo;
+                cmd.Parameters.Add("@dt_Emprestimo", SqlDbType.Date);
+                cmd.Parameters["@dt_Emprestimo"].Value = a.DtEmprestimo;
 
-                cmd.Parameters.Add("@dtentrega", SqlDbType.VarChar);
-                cmd.Parameters["@dtentrega"].Value = a.DtEntrega;
+                cmd.Parameters.Add("@dt_Entrega", SqlDbType.Date);
+                cmd.Parameters["@dt_Entrega"].Value = a.DtEntrega;
 
-                cmd.Parameters.Add("@codlivro", SqlDbType.Int);
-                cmd.Parameters["@codlivro"].Value = a.Livro.CodLivro;
+                cmd.Parameters.Add("@cpf_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@cpf_Usuario"].Value = a.Usuario.CpfUsuario;
 
-                cmd.Parameters.Add("@cpf_usuario", SqlDbType.VarChar);
-                cmd.Parameters["@cpf_usuario"].Value = a.Usuario.CpfUsuario;
+                cmd.Parameters.Add("@id_Livro", SqlDbType.Int);
+                cmd.Parameters["@id_Livro"].Value = a.Livro.CodLivro;
                 //executando a instrucao 
                 cmd.ExecuteNonQuery();
                 //liberando a memoria 
@@ -53,25 +53,25 @@ namespace ClassesBasicas.Aluguel
 
             this.AbrirConexao();
             //instrução sql correspondente a inserção do aluno
-            String sql = "select dtemprestimo, dtentrega, codlivro, cpf_usuario";
-            sql += " from aluguel";
+            String sql = "select dt_Emprestimo, dt_Entrega,cpf_usuario, id_Livro";
+            sql += " from Aluguel";
             sql += "Where cpf_usuario IS NOT NULL ";
 
-            if (filtro.DtEmprestimo != null && filtro.DtEmprestimo.Trim().Equals("") == false)
+            if (filtro.DtEmprestimo != null && filtro.DtEmprestimo.Equals("") == false)
             {
-                sql += " and dtemprestimo like @dtemprestimo ";
+                sql += " and dt_Emprestimo like @dt_Emprestimo ";
             }
-            if (filtro.DtEntrega != null && filtro.DtEntrega.Trim().Equals("") == false)
+            if (filtro.DtEntrega != null && filtro.DtEntrega.Equals("") == false)
             {
-                sql += " and dtentrega like @dtentrega ";
-            }
-            if (filtro.Livro.CodLivro != null && filtro.Livro.CodLivro.Equals("") == false)
-            {
-                sql += " and codlivro like @codlivro ";
+                sql += " and dt_Entrega like @dt_Entrega ";
             }
             if (filtro.Usuario.CpfUsuario != null && filtro.Usuario.CpfUsuario.Trim().Equals("") == false)
             {
                 sql += " and cpf_usuario like @cpf_usuario ";
+            }
+            if (filtro.Livro.CodLivro != null && filtro.Livro.CodLivro.Equals("") == false)
+            {
+                sql += " and codlivro like @codlivro ";
             }
 
 
@@ -80,37 +80,37 @@ namespace ClassesBasicas.Aluguel
             //instrucao a ser executada
             SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
-            if (filtro.DtEmprestimo != null && filtro.DtEmprestimo.Trim().Equals("") == false)
+            if (filtro.DtEmprestimo != null && filtro.DtEmprestimo.Equals("") == false)
             {
-                cmd.Parameters.Add("@dtemprestimo", SqlDbType.VarChar);
-                cmd.Parameters["@dtemprestimo"].Value = "%" + filtro.DtEmprestimo + "%";
+                cmd.Parameters.Add("@dt_Emprestimo", SqlDbType.Date);
+                cmd.Parameters["@dt_Emprestimo"].Value = "%" + filtro.DtEmprestimo + "%";
             }
-            if (filtro.DtEntrega != null && filtro.DtEntrega.Trim().Equals("") == false)
+            if (filtro.DtEntrega != null && filtro.DtEntrega.Equals("") == false)
             {
-                cmd.Parameters.Add("@dtentrega", SqlDbType.VarChar);
-                cmd.Parameters["@dtentrega"].Value = "%" + filtro.DtEntrega + "%";
-            }
-            if (filtro.Livro.CodLivro != null && filtro.Livro.CodLivro.Equals("") == false)
-            {
-                cmd.Parameters.Add("@codlivro", SqlDbType.Int);
-                cmd.Parameters["@codlivro"].Value = "%" + filtro.Livro.CodLivro + "%";
+                cmd.Parameters.Add("@dt_Entrega", SqlDbType.Date);
+                cmd.Parameters["@dt_Entrega"].Value = "%" + filtro.DtEntrega + "%";
             }
             if (filtro.Usuario.CpfUsuario != null && filtro.Usuario.CpfUsuario.Trim().Equals("") == false)
             {
                 cmd.Parameters.Add("@cpf_usuario", SqlDbType.VarChar);
                 cmd.Parameters["@cpf_usuario"].Value = "%" + filtro.Usuario.CpfUsuario + "%";
             }
-
+            if (filtro.Livro.CodLivro != null && filtro.Livro.CodLivro.Equals("") == false)
+            {
+                cmd.Parameters.Add("@codlivro", SqlDbType.Int);
+                cmd.Parameters["@codlivro"].Value = "%" + filtro.Livro.CodLivro + "%";
+            }
 
             //cmd.ExecuteNonQuery();
 
             SqlDataReader rd = cmd.ExecuteReader();
-
+          
             while (rd.Read())
             {
+
                 AluguelBC aluguel = new AluguelBC();
-                aluguel.DtEmprestimo = Convert.ToString(rd["dtemprestimo"]); //(rd.GetString(0));
-                aluguel.DtEntrega = rd["dtentrega"].ToString(); //(rd.GetString(1));
+         //       aluguel.DtEmprestimo = (rd["dt_Emprestimo"]); //(rd.GetString(0));
+           //     aluguel.DtEntrega = rd["dt_Entrega"].ToString(); //(rd.GetString(1));
                 aluguel.Livro.CodLivro = Convert.ToInt32(rd["codlivro"]); //(rd.GetString(2));
                 aluguel.Usuario.CpfUsuario = rd["cpf_usuario"].ToString(); //(rd.GetString(3));
                 retorno.Add(aluguel);
@@ -127,19 +127,19 @@ namespace ClassesBasicas.Aluguel
             {
                 //abrir a conexão
                 this.AbrirConexao();
-                string sql = "UPDATE aluguel SET dtemprestimo = @dtemprestimo, dtentrega = @dtentrega,  ";
-                sql += "WHERE cpf_usuario = @cpf_usuario";
+                string sql = "UPDATE Aluguel SET dt_Emprestimo = @dt_Emprestimo, dt_Entrega = @dt_Entrega,  ";
+                sql += "WHERE cpf_Usuario = @cpf_Usuario";
                 //instrucao a ser executada
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
-                cmd.Parameters.Add("@dtemprestimo", SqlDbType.VarChar);
-                cmd.Parameters["@dtemprestimo"].Value = a.DtEmprestimo;
+                cmd.Parameters.Add("@dt_Emprestimo", SqlDbType.Date);
+                cmd.Parameters["@dt_Emprestimo"].Value = a.DtEmprestimo;
 
-                cmd.Parameters.Add("@dtentrega", SqlDbType.VarChar);
-                cmd.Parameters["@dtentrega"].Value = a.DtEntrega;
+                cmd.Parameters.Add("@dt_Entrega", SqlDbType.Date);
+                cmd.Parameters["@dt_Entrega"].Value = a.DtEntrega;
 
-                cmd.Parameters.Add("@cpf_usuario", SqlDbType.Int);
-                cmd.Parameters["@cpf_usuario"].Value = a.Usuario.CpfUsuario;
+                cmd.Parameters.Add("@cpf_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@cpf_Usuario"].Value = a.Usuario.CpfUsuario;
 
                 //executando a instrucao 
                 cmd.ExecuteNonQuery();
@@ -161,12 +161,12 @@ namespace ClassesBasicas.Aluguel
             {
                 //abrir a conexão
                 this.AbrirConexao();
-                string sql = "DELETE FROM aluguel WHERE cpf_usuario = @cpf_usuario";
+                string sql = "DELETE FROM Aluguel WHERE cpf_Usuario = @cpf_Usuario";
                 //instrucao a ser executada
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
-                cmd.Parameters.Add("@cpf_usuario", SqlDbType.VarChar);
-                cmd.Parameters["@cpf_usuario"].Value = a.Usuario;
+                cmd.Parameters.Add("@cpf_Usuario", SqlDbType.VarChar);
+                cmd.Parameters["@cpf_Usuario"].Value = a.Usuario.CpfUsuario;
 
                 //executando a instrucao 
                 cmd.ExecuteNonQuery();

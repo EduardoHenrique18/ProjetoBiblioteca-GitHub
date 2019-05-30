@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassesBasicas.Usuario;
+using ClassesBasicas.Aluguel;
+using ClassesBasicas.Livro;
+
 
 
 namespace ConsoleApp1
@@ -12,17 +15,18 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            UsuarioBC usuario = new UsuarioBC();
-            usuario.CpfUsuario = "125966789";
+            AluguelBC a = new AluguelBC();
+           
+            AluguelNegocio negocio = new AluguelNegocio();
+
+            a.Livro.CodLivro = 1;
+            a.Usuario.CpfUsuario = "11122233344";
+
+            negocio.cadastrarAluguel(a);
+
             
-            UsuarioDados dao = new UsuarioDados();
-            List<UsuarioBC> listar = new List<UsuarioBC>();
-            listar = dao.ListarUsuario(usuario);           
-            foreach (UsuarioBC u in listar)
-            {
-                Console.WriteLine(u.CpfUsuario + " " + u.NomeUsuario + " " + u.Sexo +" " + u.NmTelefone +" " + u.Endereco +" " + u.DtNascimento +" " + u.Status);
-            }
-            Console.ReadKey();
+           
+           
 
         }
     }

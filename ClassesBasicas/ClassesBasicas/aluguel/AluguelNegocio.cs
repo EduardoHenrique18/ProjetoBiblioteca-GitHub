@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassesBasicas.Aluguel
 {
-    class AluguelNegocio : IAluguelInterface
+    public class AluguelNegocio : IAluguelInterface
     {
         
 
@@ -27,22 +27,22 @@ namespace ClassesBasicas.Aluguel
                 throw new Exception("Cpf do usuario precisa ser preenchido");
             }
             //#DATA DE SAÍDA
-            if (String.IsNullOrEmpty(a.DtEmprestimo) == true)
+           // if (DateTime.Parse(String) )
             {
                 throw new Exception("A data de Saída precisa ser preenchido");
             }
 
-            if (String.IsNullOrWhiteSpace(a.DtEmprestimo) == true)
+          //  if (String.IsNullOrWhiteSpace(a.DtEmprestimo) == true)
             {
                 throw new Exception("A data de Saída precisa ser preenchido");
             }
             //#DATA DE ENTREGA
-            if (String.IsNullOrEmpty(a.DtEntrega) == true)
+           // if (String.IsNullOrEmpty(a.DtEntrega) == true)
             {
                 throw new Exception("A data de Entrega precisa ser preenchido");
             }
 
-            if (String.IsNullOrWhiteSpace(a.DtEntrega) == true)
+          //  if (String.IsNullOrWhiteSpace(a.DtEntrega) == true)
             {
                 throw new Exception("A data de Entrega precisa ser preenchido");
             }
@@ -66,22 +66,22 @@ namespace ClassesBasicas.Aluguel
                 throw new Exception("Informar os dados do Aluguel");
             }
             //#DATA DE SAÍDA
-            if (String.IsNullOrEmpty(a.DtEmprestimo) == true)
+          //  if (String.IsNullOrEmpty(a.DtEmprestimo) == true)
             {
                 throw new Exception("A data de Saída precisa ser preenchido");
             }
 
-            if (String.IsNullOrWhiteSpace(a.DtEmprestimo) == true)
+          //  if (String.IsNullOrWhiteSpace(a.DtEmprestimo) == true)
             {
                 throw new Exception("A data de Saída precisa ser preenchido");
             }
             //#DATA DE ENTREGA
-            if (String.IsNullOrEmpty(a.DtEntrega) == true)
+         //   if (String.IsNullOrEmpty(a.DtEntrega) == true)
             {
                 throw new Exception("A data de Entrega precisa ser preenchido");
             }
 
-            if (String.IsNullOrWhiteSpace(a.DtEntrega) == true)
+          //  if (String.IsNullOrWhiteSpace(a.DtEntrega) == true)
             {
                 throw new Exception("A data de Entrega precisa ser preenchido");
             }
