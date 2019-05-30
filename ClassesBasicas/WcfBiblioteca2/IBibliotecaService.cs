@@ -40,10 +40,9 @@ namespace WcfBiblioteca2
         [WebInvoke(
         BodyStyle = WebMessageBodyStyle.Wrapped,
         RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "ListarLivro/{l}",
-        Method = "GET")]
-        List<LivroBC> ListarLivro(LivroBC l);
+        ResponseFormat = WebMessageFormat.Json,        
+        Method = "POST")]
+        List<LivroBC> ListarLivro(string l);
         [OperationContract]
         [WebInvoke(
         BodyStyle = WebMessageBodyStyle.Wrapped,

@@ -9,6 +9,7 @@ using ClassesBasicas.Aluguel;
 using ClassesBasicas.Livro;
 using ClassesBasicas.Pagamento;
 using ClassesBasicas.Usuario;
+using Newtonsoft.Json;
 
 namespace WcfBiblioteca2
 {
@@ -106,11 +107,11 @@ namespace WcfBiblioteca2
         {
             throw new NotImplementedException();
         }
-        public List<LivroBC> ListarLivro(LivroBC l)
+        public List<LivroBC> ListarLivro(string l)
         {
-            //LivroBC filtro = new LivroBC();
-            //filtro.CodLivro = 1;
-            return new LivroNegocio().ListarLivros(l);
+            var result = JsonConvert.DeserializeObject<LivroBC>(l);
+
+            return new LivroNegocio().ListarLivros(result);
         }
 
         public List<PagamentoBC> ListarPagamento(PagamentoBC filtro)
