@@ -12,7 +12,7 @@ namespace ClassesBasicas.Aluguel
     class AluguelDados : Conexao, IAluguelInterface
     {
 
-
+        #region Cadastrar
         public void cadastrarAluguel(AluguelBC a)
         {
             try
@@ -45,7 +45,8 @@ namespace ClassesBasicas.Aluguel
                 throw new Exception("erro ao conectar cadastro " + ex.Message);
             }
         }
-
+        #endregion
+        #region Listar
         public List<AluguelBC> listarAluguel(AluguelBC filtro)
         {
             List<AluguelBC> retorno = new List<AluguelBC>();
@@ -117,8 +118,43 @@ namespace ClassesBasicas.Aluguel
             return retorno;
            
         }
-    
+        #endregion
+        #region Alterar
+        public void alterarAluguel(AluguelBC a)
+        {
 
+            try
+            {
+                //abrir a conexão
+                this.AbrirConexao();
+                string sql = "UPDATE aluguel SET dtemprestimo = @dtemprestimo, dtentrega = @dtentrega,  ";
+                sql += "WHERE cpf_usuario = @cpf_usuario";
+                //instrucao a ser executada
+                SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
+
+                cmd.Parameters.Add("@dtemprestimo", SqlDbType.VarChar);
+                cmd.Parameters["@dtemprestimo"].Value = a.DtEmprestimo;
+
+                cmd.Parameters.Add("@dtentrega", SqlDbType.VarChar);
+                cmd.Parameters["@dtentrega"].Value = a.DtEntrega;
+
+                cmd.Parameters.Add("@cpf_usuario", SqlDbType.Int);
+                cmd.Parameters["@cpf_usuario"].Value = a.Usuario.CpfUsuario;
+
+                //executando a instrucao 
+                cmd.ExecuteNonQuery();
+                //liberando a memoria 
+                cmd.Dispose();
+                //fechando a conexao
+                this.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao conectar e alterar " + ex.Message);
+            }
+        }
+        #endregion
+        #region Deletar
         public void deletarAluguel(AluguelBC a)
         {
             try
@@ -144,5 +180,6 @@ namespace ClassesBasicas.Aluguel
                 throw new Exception("Erro ao conectar e remover " + ex.Message);
             }
         }
+        #endregion
     }
 }

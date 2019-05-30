@@ -51,12 +51,49 @@ namespace ClassesBasicas.Aluguel
             {
                 throw new Exception("Informar o código do Livro");
             }
+            
         }
 
         public List<AluguelBC> listarAluguel(AluguelBC a)
         {
             return new AluguelDados().listarAluguel(a);
 
+        }
+        public void alterarAluguel(AluguelBC a)
+        {
+            if (a == null)
+            {
+                throw new Exception("Informar os dados do Aluguel");
+            }
+            //#DATA DE SAÍDA
+            if (String.IsNullOrEmpty(a.DtEmprestimo) == true)
+            {
+                throw new Exception("A data de Saída precisa ser preenchido");
+            }
+
+            if (String.IsNullOrWhiteSpace(a.DtEmprestimo) == true)
+            {
+                throw new Exception("A data de Saída precisa ser preenchido");
+            }
+            //#DATA DE ENTREGA
+            if (String.IsNullOrEmpty(a.DtEntrega) == true)
+            {
+                throw new Exception("A data de Entrega precisa ser preenchido");
+            }
+
+            if (String.IsNullOrWhiteSpace(a.DtEntrega) == true)
+            {
+                throw new Exception("A data de Entrega precisa ser preenchido");
+            }
+            if (String.IsNullOrEmpty(a.Usuario.CpfUsuario) == true)
+            {
+                throw new Exception("Cpf do usuario precisa ser preenchido");
+            }
+
+            if (String.IsNullOrWhiteSpace(a.Usuario.CpfUsuario) == true)
+            {
+                throw new Exception("Cpf do usuario precisa ser preenchido");
+            }
         }
 
         public void deletarAluguel(AluguelBC a)

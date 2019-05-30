@@ -42,5 +42,9 @@ namespace ClassesBasicas.Aluguel
         {
 
         }
+        public void alterarAluguel()
+        {
+
+        }
     }
 }
