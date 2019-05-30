@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:56795/BibliotecaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ClassesBasicas.Livro" />
+  <xs:import schemaLocation="http://localhost:56795/BibliotecaService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" />
+  <xs:import schemaLocation="http://localhost:56795/BibliotecaService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ClassesBasicas.Aluguel" />
+  <xs:import schemaLocation="http://localhost:56795/BibliotecaService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/ClassesBasicas.Pagamento" />
+  <xs:element name="CadastrarLivro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ClassesBasicas.Livro" minOccurs="0" name="l" nillable="true" type="q1:LivroBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CadastrarLivroResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlterarLivro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ClassesBasicas.Livro" minOccurs="0" name="l" nillable="true" type="q2:LivroBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlterarLivroResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarLivro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ClassesBasicas.Livro" minOccurs="0" name="filtro" nillable="true" type="q3:LivroBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarLivroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ClassesBasicas.Livro" minOccurs="0" name="ListarLivroResult" nillable="true" type="q4:ArrayOfLivroBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletarLivro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ClassesBasicas.Livro" minOccurs="0" name="l" nillable="true" type="q5:LivroBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletarLivroResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CadastrarUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" minOccurs="0" name="u" nillable="true" type="q6:UsuarioBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CadastrarUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlterarUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" minOccurs="0" name="u" nillable="true" type="q7:UsuarioBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlterarUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" minOccurs="0" name="filtro" nillable="true" type="q8:UsuarioBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" minOccurs="0" name="ListarUsuarioResult" nillable="true" type="q9:ArrayOfUsuarioBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletarUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" minOccurs="0" name="u" nillable="true" type="q10:UsuarioBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletarUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CadastrarAluguel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ClassesBasicas.Aluguel" minOccurs="0" name="a" nillable="true" type="q11:AluguelBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CadastrarAluguelResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlterarAluguel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ClassesBasicas.Aluguel" minOccurs="0" name="a" nillable="true" type="q12:AluguelBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlterarAluguelResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarAluguel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ClassesBasicas.Aluguel" minOccurs="0" name="filtro" nillable="true" type="q13:AluguelBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarAluguelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ClassesBasicas.Aluguel" minOccurs="0" name="ListarAluguelResult" nillable="true" type="q14:ArrayOfAluguelBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeltetarAluguel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ClassesBasicas.Aluguel" minOccurs="0" name="a" nillable="true" type="q15:AluguelBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeltetarAluguelResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CadastrarPagamento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ClassesBasicas.Pagamento" minOccurs="0" name="p" nillable="true" type="q16:PagamentoBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CadastrarPagamentoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlterarPagamento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/ClassesBasicas.Pagamento" minOccurs="0" name="p" nillable="true" type="q17:PagamentoBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlterarPagamentoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPagamento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/ClassesBasicas.Pagamento" minOccurs="0" name="filtro" nillable="true" type="q18:PagamentoBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPagamentoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ClassesBasicas.Pagamento" minOccurs="0" name="ListarPagamentoResult" nillable="true" type="q19:ArrayOfPagamentoBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletarPagamento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/ClassesBasicas.Pagamento" minOccurs="0" name="p" nillable="true" type="q20:PagamentoBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletarPagamentoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LancarMulta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" minOccurs="0" name="u" nillable="true" type="q21:UsuarioBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LancarMultaResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BaixaMulta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" minOccurs="0" name="u" nillable="true" type="q22:UsuarioBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BaixaMultaResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EmitirNF">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" minOccurs="0" name="u" nillable="true" type="q23:UsuarioBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EmitirNFResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BloquearUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/ClassesBasicas.Usuario" minOccurs="0" name="u" nillable="true" type="q24:UsuarioBC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BloquearUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

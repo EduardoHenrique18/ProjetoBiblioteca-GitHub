@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClassesBasicas.Livro
 {
-    class LivroNegocio : ILivroInterface
-    {
-        #region Método Alterar
-        public void AlterarProduto(LivroBC l)
+    public class LivroNegocio : ILivroInterface
+    {       
+        public void AlterarLivro(LivroBC l)
         {
             if(l == null)
             {
@@ -68,25 +67,21 @@ namespace ClassesBasicas.Livro
             LivroBC livro = new LivroBC();
             livro.CodLivro = l.CodLivro;
 
-            if (dados.ListarProdutos(livro).Count <= 0)
+            if (dados.ListarLivros(livro).Count <= 0)
             {
                 throw new Exception("O código referido não se encontra cadastrado");
             }
-            dados.AlterarProduto(l);           
+            dados.AlterarLivro(l);           
         }
-        }
-        #endregion
-        #region Método Cadastrar
-        public void CadastrarProduto(LivroBC l)
+
+    
+        
+        public void CadastrarLivro(LivroBC l)
         {
             if(l == null)
             {
                 throw new Exception("Informar os dados do Livro");
-            }
-            if (l.CodLivro <= 0)
-            {
-                throw new Exception("Informar o código do Livro");
-            }
+            }            
             //Titulo
             if (string.IsNullOrEmpty(l.TituloLivro) == true)
             {
@@ -112,12 +107,7 @@ namespace ClassesBasicas.Livro
             if(l.EditoraLivro.Length > 30)
             {
                 throw new Exception("Nome da Editora do Livro Não pode Conter mais de 30 Caracteres");
-            }
-            //Situação
-            if((l.Situaçao != 0) && (l.Situaçao != 1))
-            {
-                throw new Exception("Informe uma Situação Válida, 0 (Indisponivel) ou 1 (Disponivel)");
-            }
+            }                       
             //Autor
             if (string.IsNullOrEmpty(l.Autor) == true)
             {
@@ -136,21 +126,19 @@ namespace ClassesBasicas.Livro
             LivroBC livro = new LivroBC();
             livro.CodLivro = l.CodLivro;
 
-            if (dados.ListarProdutos(livro).Count > 0)
+            if (dados.ListarLivros(livro).Count > 0)
             {
                 throw new Exception("O código referido já se encontra cadastrado");
             }
-            dados.CadastrarProduto(l);            
+            dados.CadastrarLivro(l);            
         }
-        #endregion
-        #region Método Listar
-        public List<LivroBC> ListarProdutos(LivroBC l)
-        {
-            return new LivroDados().ListarProdutos(l);
+        
+        public List<LivroBC> ListarLivros(LivroBC l)
+        {           
+            return new LivroDados().ListarLivros(l);
         }
-        #endregion
-        #region Método Remover
-        public void RemoverProduto(LivroBC l)
+        
+        public void RemoverLivro(LivroBC l)
         {
             if(l == null)
             {
@@ -164,13 +152,13 @@ namespace ClassesBasicas.Livro
             LivroBC livro = new LivroBC();
             livro.CodLivro = l.CodLivro;
             LivroDados dados = new LivroDados();
-            if (dados.ListarProdutos(livro).Count <= 0)
+            if (dados.ListarLivros(livro).Count <= 0)
             {
                 throw new Exception("O código referido não se encontra cadastrado");
             }
 
-            dados.RemoverProduto(l);
+            dados.RemoverLivro(l);
         }
-        #endregion
+        
     }
 }

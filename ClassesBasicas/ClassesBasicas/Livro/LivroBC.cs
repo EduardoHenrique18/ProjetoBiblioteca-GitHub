@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using ClassesBasicas.Aluguel;
 
 namespace ClassesBasicas.Livro
 {
+    [DataContract]
     public class LivroBC
     {
         private int codLivro;
@@ -15,19 +17,25 @@ namespace ClassesBasicas.Livro
         private int situaçao;
         private String autor;
 
-        private AluguelBC aluguel;
+        //private AluguelBC aluguel;
        
         public LivroBC()
         {
-            this.aluguel = new AluguelBC();
+            this.situaçao = 1;
+            //this.aluguel = new AluguelBC();
         }
-
+        [DataMember(IsRequired = true)]
         public int CodLivro { get => codLivro; set => codLivro = value; }
+        [DataMember(IsRequired = true)]
         public String TituloLivro { get => tituloLivro; set => tituloLivro = value; }
+        [DataMember(IsRequired = true)]
         public String EditoraLivro { get => editoraLivro; set => editoraLivro = value; }
+        [DataMember(IsRequired = true)]
         public int Situaçao { get => situaçao; set => situaçao = value; }
+        [DataMember(IsRequired = true)]
         public String Autor { get => autor; set => autor = value; }
-        internal AluguelBC Aluguel { get => aluguel; set => aluguel = value; }
+        //[DataMember(IsRequired = true)]
+        //internal AluguelBC Aluguel { get => aluguel; set => aluguel = value; }
 
         
     }

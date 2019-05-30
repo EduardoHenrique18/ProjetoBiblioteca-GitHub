@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
 using ClassesBasicas.Livro;
 using ClassesBasicas.Aluguel;
 using ClassesBasicas.Pagamento;
 using ClassesBasicas.Usuario;
+
 
 namespace WcfBiblioteca
 {
@@ -15,8 +12,7 @@ namespace WcfBiblioteca
     [ServiceContract]
     public interface IBibliotecaService1
     {
-        [OperationContract]
-        //CRUD----------------------------------------------------
+        [OperationContract]       
         void CadastrarLivro(LivroBC l);
         [OperationContract]
         void AlterarLivro(LivroBC l);

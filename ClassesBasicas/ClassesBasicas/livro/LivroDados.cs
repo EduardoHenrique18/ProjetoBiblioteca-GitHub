@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,10 +9,10 @@ using ClassesBasicas.conexao;
 
 namespace ClassesBasicas.Livro
 {
-    class LivroDados : Conexao, ILivroInterface
+    public class LivroDados : Conexao, ILivroInterface
     {
         #region Método Cadastrar
-        public void CadastrarProduto(LivroBC l)
+        public void CadastrarLivro(LivroBC l)
         {
             try
             {
@@ -21,13 +23,13 @@ namespace ClassesBasicas.Livro
                 //instrucao a ser executada
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
-                cmd.Parameters.Add("@@titulo_Livro", SqlDbType.VarChar);
+                cmd.Parameters.Add("@titulo_Livro", SqlDbType.VarChar);
                 cmd.Parameters["@titulo_Livro"].Value = l.TituloLivro;
 
                 cmd.Parameters.Add("@editora_Livro", SqlDbType.VarChar);
                 cmd.Parameters["@editora_Livro"].Value = l.EditoraLivro ;
 
-                cmd.Parameters.Add("@situacao_Livro", SqlDbType.Integer);
+                cmd.Parameters.Add("@situacao_Livro", SqlDbType.Int);
                 cmd.Parameters["@situacao_Livro"].Value = l.Situaçao;
 
                 cmd.Parameters.Add("@autor_Livro", SqlDbType.VarChar);
@@ -48,7 +50,7 @@ namespace ClassesBasicas.Livro
         }
         #endregion
         #region Método Alterar
-        public void AlterarProduto(LivroBC l)
+        public void AlterarLivro(LivroBC l)
         {
        
             try
@@ -66,13 +68,13 @@ namespace ClassesBasicas.Livro
                 cmd.Parameters.Add("@editora_Livro", SqlDbType.VarChar);
                 cmd.Parameters["@editora_Livro"].Value = l.EditoraLivro;
 
-                cmd.Parameters.Add("situacao_Livro", SqlDbType.Integer);
+                cmd.Parameters.Add("@situacao_Livro", SqlDbType.Int);
                 cmd.Parameters["situacao_Livro"].Value = l.Situaçao;
 
                 cmd.Parameters.Add("@autor_Livro", SqlDbType.VarChar);
                 cmd.Parameters["@autor_Livro"].Value = l.Autor;
 
-                cmd.Parameters.Add("@id_Livro", SqlDbType.Integer);
+                cmd.Parameters.Add("@id_Livro", SqlDbType.Int);
                 cmd.Parameters["@id_Livro"].Value = l.CodLivro;
 
                 //executando a instrucao 
@@ -89,7 +91,7 @@ namespace ClassesBasicas.Livro
         }
         #endregion
         #region Método Listar
-        public List<LivroBC> ListarProdutos(LivroBC filtro)
+        public List<LivroBC> ListarLivros(LivroBC filtro)
         {
             List<LivroBC> retorno = new List<LivroBC>();       
             
@@ -100,7 +102,7 @@ namespace ClassesBasicas.Livro
             sql += " from Livro as l ";
             sql += "Where l.id_Livro IS NOT NULL ";
 
-            if (filtro.CodLivro.ToString != null && filtro.CodLivro.ToString.Trim().Equals("") == false)
+            if (filtro.CodLivro > 0)
             {
                 sql += " and l.id_Livro like @id_Livro ";
             }
@@ -112,7 +114,6 @@ namespace ClassesBasicas.Livro
             {
                 sql += " and l.editora_Livro like @editora_Livro ";
             }
-
             if (filtro.Situaçao.ToString() != null && filtro.Situaçao.ToString().Trim().Equals("") == false)
             {
                 sql += " and l.situacao_Livro like @situacao_Livro ";
@@ -121,16 +122,17 @@ namespace ClassesBasicas.Livro
             {
                 sql += " and l.autor_Livro like @autor_Livro ";
             }
+            Console.WriteLine(sql);
            
 
             
             //instrucao a ser executada
             SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
-            if (filtro.CodLivro.ToString != null && filtro.CodLivro.Trim().Equals("") == false)
+            if (filtro.CodLivro > 0)
             {
-                cmd.Parameters.Add("id_Livro", SqlDbType.VarChar);
-                cmd.Parameters["@id_Livro"].Value = "%" + filtro.CodLivro.ToString + "%";                
+                cmd.Parameters.Add("@id_Livro", SqlDbType.VarChar);
+                cmd.Parameters["@id_Livro"].Value = "%" + filtro.CodLivro.ToString() + "%";                
             }                       
             if (filtro.TituloLivro != null && filtro.TituloLivro.Trim().Equals("") == false)
             {
@@ -174,7 +176,7 @@ namespace ClassesBasicas.Livro
         }
         #endregion
         #region Método Remover
-        public void RemoverProduto(LivroBC l)
+        public void RemoverLivro(LivroBC l)
         {
             try
             {
@@ -184,7 +186,7 @@ namespace ClassesBasicas.Livro
                 //instrucao a ser executada
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
-                cmd.Parameters.Add("@id_Livro", SqlDbType.Integer);
+                cmd.Parameters.Add("@id_Livro", SqlDbType.Int);
                 cmd.Parameters["@id_Livro"].Value = l.CodLivro;
                
                 //executando a instrucao 

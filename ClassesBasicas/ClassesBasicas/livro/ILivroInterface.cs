@@ -8,10 +8,10 @@ namespace ClassesBasicas.Livro
 {
     interface ILivroInterface
     {
-        void CadastrarProduto(LivroBC l);
-        void AlterarProduto(LivroBC l);
-        void RemoverProduto(LivroBC l);
-        List<LivroBC> ListarProdutos(LivroBC l);
+        void CadastrarLivro(LivroBC l);
+        void AlterarLivro(LivroBC l);
+        void RemoverLivro(LivroBC l);
+        List<LivroBC> ListarLivros(LivroBC l);
 
     }
 }
