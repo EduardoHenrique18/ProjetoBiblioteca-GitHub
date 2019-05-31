@@ -15,10 +15,13 @@ namespace ClassesBasicas.Aluguel
         #region Cadastrar
         public void cadastrarAluguel(AluguelBC a)
         {
+            
             try
             {
+
+                
                 this.AbrirConexao();
-                String sql = "insert into aluguel (dt_Emprestimo,dt_Entrega,cpf_Usuario,id_Livro) values (@dt_Empretimo,@dt_Entrega,@cpf_Usuario,@id_Livro)";
+                String sql = "insert into aluguel (dt_Emprestimo,dt_Entrega,cpf_Usuario,id_Livro) values (@dt_Emprestimo,@dt_Entrega,@cpf_Usuario,@id_Livro)";
 
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
@@ -69,7 +72,7 @@ namespace ClassesBasicas.Aluguel
             {
                 sql += " and cpf_usuario like @cpf_usuario ";
             }
-            if (filtro.Livro.CodLivro != null && filtro.Livro.CodLivro.Equals("") == false)
+            if (filtro.Livro.CodLivro != 0 && filtro.Livro.CodLivro.Equals("") == false)
             {
                 sql += " and codlivro like @codlivro ";
             }
@@ -95,7 +98,7 @@ namespace ClassesBasicas.Aluguel
                 cmd.Parameters.Add("@cpf_usuario", SqlDbType.VarChar);
                 cmd.Parameters["@cpf_usuario"].Value = "%" + filtro.Usuario.CpfUsuario + "%";
             }
-            if (filtro.Livro.CodLivro != null && filtro.Livro.CodLivro.Equals("") == false)
+            if (filtro.Livro.CodLivro != 0 && filtro.Livro.CodLivro.Equals("") == false)
             {
                 cmd.Parameters.Add("@codlivro", SqlDbType.Int);
                 cmd.Parameters["@codlivro"].Value = "%" + filtro.Livro.CodLivro + "%";
@@ -109,8 +112,8 @@ namespace ClassesBasicas.Aluguel
             {
 
                 AluguelBC aluguel = new AluguelBC();
-         //       aluguel.DtEmprestimo = (rd["dt_Emprestimo"]); //(rd.GetString(0));
-           //     aluguel.DtEntrega = rd["dt_Entrega"].ToString(); //(rd.GetString(1));
+                aluguel.DtEmprestimo =Convert.ToDateTime(rd["dt_Emprestimo"]); //(rd.GetString(0));
+               aluguel.DtEntrega = Convert.ToDateTime(rd["dt_Entrega"]); //(rd.GetString(1));
                 aluguel.Livro.CodLivro = Convert.ToInt32(rd["codlivro"]); //(rd.GetString(2));
                 aluguel.Usuario.CpfUsuario = rd["cpf_usuario"].ToString(); //(rd.GetString(3));
                 retorno.Add(aluguel);
