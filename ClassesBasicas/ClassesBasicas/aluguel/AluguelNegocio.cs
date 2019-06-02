@@ -8,12 +8,10 @@ namespace ClassesBasicas.Aluguel
 {
     public class AluguelNegocio : IAluguelInterface
     {
-        
 
+        #region Cadastrar
         public void cadastrarAluguel(AluguelBC a)
         {
-            
-
             if (a == null)
             {
                 throw new Exception("Informar os dados do Aluguel");
@@ -23,23 +21,31 @@ namespace ClassesBasicas.Aluguel
             {
                 throw new Exception("Cpf do usuario precisa ser preenchido");
             }
-
             if (String.IsNullOrWhiteSpace(a.Usuario.CpfUsuario) == true)
             {
                 throw new Exception("Cpf do usuario precisa ser preenchido");
             }
-
+            if (a.Usuario.CpfUsuario.Length > 15)
+            {
+                throw new Exception("O CPF do Usuário Não pode Conter mais de 15 Caracteres");
+            }
             //DATA DE SAÍDA
             if (Convert.ToDateTime(a.DtEmprestimo) == null)
             {
                 throw new Exception("A data de Saída precisa ser preenchido");
             }
-
-           
+            if (Convert.ToString(a.DtEmprestimo).Length > 10)
+            {
+                throw new Exception("a data de emprestimo Não pode Conter mais de 10 Caracteres");
+            }
             //DATA DE ENTREGA
-           if (Convert.ToDateTime(a.DtEntrega) == null)
+            if (Convert.ToDateTime(a.DtEntrega) == null)
             {
                 throw new Exception("A data de Entrega precisa ser preenchido");
+            }
+            if (Convert.ToString(a.DtEntrega).Length > 10)
+            {
+                throw new Exception("a data de entrega Não pode Conter mais de 10 Caracteres");
             }
             //CODIGO DO LIVRO
             if (a.Livro.CodLivro <= 0)
@@ -47,16 +53,18 @@ namespace ClassesBasicas.Aluguel
                 throw new Exception("Informar o código do Livro");
             }
             AluguelDados dados = new AluguelDados();
-            dados.cadastrarAluguel(a);
-            
+            dados.cadastrarAluguel(a);     
         }
-
+        #endregion
+        #region Listar
         public List<AluguelBC> listarAluguel(AluguelBC a)
         {
             return new AluguelDados().listarAluguel(a);
             
 
         }
+        #endregion
+        #region Alterar
         public void alterarAluguel(AluguelBC a)
         {
             if (a == null)
@@ -68,12 +76,20 @@ namespace ClassesBasicas.Aluguel
             {
                 throw new Exception("A data de Saída precisa ser preenchido");
             }
+            if (Convert.ToString(a.DtEmprestimo).Length > 10)
+            {
+                throw new Exception("a data de emprestimo Não pode Conter mais de 10 Caracteres");
+            }
             //DATA DE ENTREGA
-           if (Convert.ToDateTime(a.DtEntrega) == null)
+            if (Convert.ToDateTime(a.DtEntrega) == null)
             {
                 throw new Exception("A data de Entrega precisa ser preenchido");
             }
-           //CPF USUARIO
+            if (Convert.ToString(a.DtEntrega).Length > 10)
+            {
+                throw new Exception("a data de entrega Não pode Conter mais de 10 Caracteres");
+            }
+            //CPF USUARIO
             if (String.IsNullOrEmpty(a.Usuario.CpfUsuario) == true)
             {
                 throw new Exception("Cpf do usuario precisa ser preenchido");
@@ -86,7 +102,8 @@ namespace ClassesBasicas.Aluguel
             AluguelDados dados = new AluguelDados();
             dados.alterarAluguel(a);
         }
-
+        #endregion
+        #region Deletar
         public void deletarAluguel(AluguelBC a)
         {
             if (a == null)
@@ -111,5 +128,6 @@ namespace ClassesBasicas.Aluguel
             
             dados.deletarAluguel(a);
         }
+        #endregion
     }
 }
