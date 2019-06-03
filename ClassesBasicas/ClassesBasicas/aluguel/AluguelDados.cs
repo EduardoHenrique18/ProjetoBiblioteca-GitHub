@@ -17,8 +17,11 @@ namespace ClassesBasicas.Aluguel
       
         public void CadastrarAluguel(AluguelBC a)
         {
+            
             try
             {
+
+                
                 this.AbrirConexao();
                 String sql = "insert into aluguel (dt_Emprestimo,dt_Entrega,cpf_Usuario,id_Livro, status_aluguel, valor_aluguel) " +
                              "values (@dt_Emprestimo,@dt_Entrega,@cpf_Usuario,@id_Livro,@status_aluguel,@valor_aluguel)";

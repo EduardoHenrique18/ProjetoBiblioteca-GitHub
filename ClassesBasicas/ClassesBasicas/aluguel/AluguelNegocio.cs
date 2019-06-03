@@ -47,5 +47,6 @@ namespace ClassesBasicas.Aluguel
             AluguelDados dao = new AluguelDados();
             dao.ConfirmarEntrega(a);
         }
+        #endregion
     }
 }
