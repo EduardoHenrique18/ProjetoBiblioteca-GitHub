@@ -13,42 +13,33 @@ namespace ClassesBasicas.Livro
             if(l == null)
             {
                 throw new Exception("Informar os dados do Livro");
-            }
-            if (l.CodLivro <= 0)
-            {
-                throw new Exception("Informar o código do Livro");
-            }
+            }           
             //Titulo
-            if (string.IsNullOrEmpty(l.TituloLivro) == true)
+            if (string.IsNullOrEmpty(l.TituloLivro))
             {
                 throw new Exception("Informar o nome do Livro");
             }
-            if (string.IsNullOrWhiteSpace(l.TituloLivro) == true)
+            if (string.IsNullOrWhiteSpace(l.TituloLivro))
             {
                 throw new Exception("Informar o nome do Livro");
             }
-            if(l.TituloLivro.Length > 30)
+            if(l.TituloLivro.Length > 60)
             {
-                throw new Exception("Titulo do Livro Não pode Conter mais de 30 Caracteres");
+                throw new Exception("Titulo do Livro Não pode Conter mais de 60 Caracteres");
             }
             //Editora
-            if (string.IsNullOrEmpty(l.EditoraLivro) == true)
+            if (string.IsNullOrEmpty(l.EditoraLivro))
             {
                 throw new Exception("Informar a Editora do Livro");
             }
-            if (string.IsNullOrWhiteSpace(l.EditoraLivro) == true)
+            if (string.IsNullOrWhiteSpace(l.EditoraLivro))
             {
                 throw new Exception("Informar a Editora do Livro");
             }
             if(l.EditoraLivro.Length > 30)
             {
                 throw new Exception("Nome da Editora do Livro Não pode Conter mais de 30 Caracteres");
-            }
-            //Situação
-            if((l.Situaçao != 0) && (l.Situaçao != 1))
-            {
-                throw new Exception("Informe uma Situação Válida, 0 (Indisponivel) ou 1 (Disponivel)");
-            }
+            }           
             //Autor
             if (string.IsNullOrEmpty(l.Autor) == true)
             {
@@ -73,9 +64,7 @@ namespace ClassesBasicas.Livro
             }
             dados.AlterarLivro(l);           
         }
-
-    
-        
+       
         public void CadastrarLivro(LivroBC l)
         {
             if(l == null)
@@ -122,14 +111,7 @@ namespace ClassesBasicas.Livro
                 throw new Exception("Nome do Autor do Livro Não pode Conter mais de 30 Caracteres");
             }
             LivroDados dados = new LivroDados();
-
-            LivroBC livro = new LivroBC();
-            livro.CodLivro = l.CodLivro;
-
-            if (dados.ListarLivros(livro).Count > 0)
-            {
-                throw new Exception("O código referido já se encontra cadastrado");
-            }
+           
             dados.CadastrarLivro(l);            
         }
         
@@ -137,7 +119,12 @@ namespace ClassesBasicas.Livro
         {           
             return new LivroDados().ListarLivros(l);
         }
-        
+
+        public List<LivroBC> ListarTodosLivros()
+        {
+            return new LivroDados().ListarTodosLivros();
+        }
+
         public void RemoverLivro(LivroBC l)
         {
             if(l == null)

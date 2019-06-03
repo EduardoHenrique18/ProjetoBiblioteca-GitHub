@@ -17,12 +17,11 @@ namespace ClassesBasicas.Livro
         private int situaçao;
         private String autor;
 
-        //private AluguelBC aluguel;
+        private AluguelBC aluguel;
        
         public LivroBC()
         {
             this.situaçao = 1;
-            //this.aluguel = new AluguelBC();
         }
         [DataMember(IsRequired = true)]
         public int CodLivro { get => codLivro; set => codLivro = value; }
@@ -34,8 +33,8 @@ namespace ClassesBasicas.Livro
         public int Situaçao { get => situaçao; set => situaçao = value; }
         [DataMember(IsRequired = true)]
         public String Autor { get => autor; set => autor = value; }
-        //[DataMember(IsRequired = true)]
-        //internal AluguelBC Aluguel { get => aluguel; set => aluguel = value; }
+        [DataMember(IsRequired = true)]
+        public AluguelBC Aluguel { get => aluguel; set => aluguel = value; }
 
         
     }

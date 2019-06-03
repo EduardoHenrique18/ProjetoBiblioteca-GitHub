@@ -7,8 +7,8 @@ using System.ServiceModel.Web;
 using System.Text;
 using ClassesBasicas.Livro;
 using ClassesBasicas.Aluguel;
-using ClassesBasicas.Pagamento;
 using ClassesBasicas.Usuario;
+using Newtonsoft.Json;
 
 namespace WcfBiblioteca2
 {
@@ -41,7 +41,7 @@ namespace WcfBiblioteca2
         BodyStyle = WebMessageBodyStyle.Wrapped,
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,        
-        Method = "POST")]
+        Method = "GET")]
         List<LivroBC> ListarLivro(string l);
         [OperationContract]
         [WebInvoke(
@@ -91,49 +91,32 @@ namespace WcfBiblioteca2
         [WebInvoke(
         BodyStyle = WebMessageBodyStyle.Wrapped,
         RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json)]
-        List<AluguelBC> ListarAluguel(AluguelBC filtro);
+        ResponseFormat = WebMessageFormat.Json,
+        Method ="GET")]
+        List<AluguelBC> ListarAluguel();
         [OperationContract]
         [WebInvoke(
         BodyStyle = WebMessageBodyStyle.Wrapped,
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json)]
-        void DeltetarAluguel(AluguelBC a);
-
-        [OperationContract]
-        [WebInvoke(
-        BodyStyle = WebMessageBodyStyle.Wrapped,
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json)]
-        void CadastrarPagamento(PagamentoBC p);
-        [OperationContract]
-        [WebInvoke(
-        BodyStyle = WebMessageBodyStyle.Wrapped,
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json)]
-        void AlterarPagamento(PagamentoBC p);
-        [OperationContract]
-        [WebInvoke(
-        BodyStyle = WebMessageBodyStyle.Wrapped,
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json)]
-        List<PagamentoBC> ListarPagamento(PagamentoBC filtro);
-        [OperationContract]
-        [WebInvoke(
-        BodyStyle = WebMessageBodyStyle.Wrapped,
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json)]
-        void DeletarPagamento(PagamentoBC p);
+        void DeletarAluguel(AluguelBC a);
 
         //Metodos Funcionais
         [OperationContract]
-        void LancarMulta(UsuarioBC u);
+        [WebInvoke(
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        Method = "POST")]
+        void ConfirmarEntrega(string a);
+
         [OperationContract]
-        void BaixaMulta(UsuarioBC u);
-        [OperationContract]
-        void EmitirNF(UsuarioBC u);
-        [OperationContract]
-        void BloquearUsuario(UsuarioBC u);
+        [WebInvoke(
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        Method = "GET")]
+        List<LivroBC> ListarTodosLivros();
 
         // TODO: Add your service operations here
     }

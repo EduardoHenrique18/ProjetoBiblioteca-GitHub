@@ -19,14 +19,14 @@ namespace ClassesBasicas.Usuario
                 //abrir a conexão
                 this.AbrirConexao();
                 string sql = "UPDATE Usuario SET nome_Usuario = @nome_Usuario, dt_Nasc_Usuario = @dt_Nasc_Usuario,  ";
-                sql += "nm_Telefone = @nm_Telefone, status_Usuario = @status_Usuario WHERE cpf_usuario = @cpf_usuario";
+                sql += "nm_Telefone = @nm_Telefone, status_Usuario = @status_Usuario, sexo = @sexo, endereco_Usuario = @endereco_Usuario WHERE cpf_usuario = @cpf_usuario";
                 //instrucao a ser executada
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
     
                 cmd.Parameters.Add("@nome_Usuario", SqlDbType.VarChar);
                 cmd.Parameters["@nome_Usuario"].Value = u.NomeUsuario;
 
-                cmd.Parameters.Add("@dt_Nasc_Usuario", SqlDbType.VarChar);
+                cmd.Parameters.Add("@dt_Nasc_Usuario", SqlDbType.Date);
                 cmd.Parameters["@dt_Nasc_Usuario"].Value = u.DtNascimento;
 
                 cmd.Parameters.Add("@nm_telefone", SqlDbType.VarChar);
@@ -37,6 +37,14 @@ namespace ClassesBasicas.Usuario
 
                 cmd.Parameters.Add("@cpf_Usuario", SqlDbType.VarChar);
                 cmd.Parameters["@cpf_Usuario"].Value = u.CpfUsuario;
+
+                cmd.Parameters.Add("@sexo", SqlDbType.VarChar);
+                cmd.Parameters["@sexo"].Value = u.Sexo;
+
+                cmd.Parameters.Add("@endereco", SqlDbType.VarChar);
+                cmd.Parameters["@endereco"].Value = u.Sexo;
+
+
 
                 //executando a instrucao 
                 cmd.ExecuteNonQuery();
@@ -57,8 +65,8 @@ namespace ClassesBasicas.Usuario
             {
                 //abrir a conexão
                 this.AbrirConexao();
-                string sql = "insert into Usuario (cpf_Usuario, nome_Usuario, dt_Nasc_Usuario, nm_Telefone, status_Usuario) ";
-                sql += "values(@cpf_Usuario, @nome_Usuario, @dt_Nasc_Usuario, @nm_Telefone, @status_Usuario)";
+                string sql = "insert into Usuario (cpf_Usuario, nome_Usuario, dt_Nasc_Usuario, nm_Telefone, status_Usuario, endereco_usuario, sexo) ";
+                sql += "values(@cpf_Usuario, @nome_Usuario, @dt_Nasc_Usuario, @nm_Telefone, @status_Usuario, @endereco_usuario, @sexo)";
                 //instrucao a ser executada
                 SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
 
@@ -68,14 +76,21 @@ namespace ClassesBasicas.Usuario
                 cmd.Parameters.Add("@nome_Usuario", SqlDbType.VarChar);
                 cmd.Parameters["@nome_Usuario"].Value = u.NomeUsuario;
 
-                cmd.Parameters.Add("@dt_Nasc_Usuario", SqlDbType.VarChar);
+                cmd.Parameters.Add("@dt_Nasc_Usuario", SqlDbType.Date);
                 cmd.Parameters["@dt_Nasc_Usuario"].Value = u.DtNascimento;
 
                 cmd.Parameters.Add("@nm_telefone", SqlDbType.VarChar);
                 cmd.Parameters["@nm_telefone"].Value = u.NmTelefone;
 
-                cmd.Parameters.Add("@status_usuario", SqlDbType.VarChar);
+                cmd.Parameters.Add("@status_usuario", SqlDbType.Int);
                 cmd.Parameters["@status_usuario"].Value = u.Status;
+
+                cmd.Parameters.Add("@endereco_usuario", SqlDbType.VarChar);
+                cmd.Parameters["@endereco_usuario"].Value = u.Endereco;
+
+                cmd.Parameters.Add("@sexo", SqlDbType.VarChar);
+                cmd.Parameters["@sexo"].Value = u.Sexo;
+
 
 
                 //executando a instrucao 
@@ -110,7 +125,7 @@ namespace ClassesBasicas.Usuario
             {
                 sql += " and u.nome_usuario like @nome_usuario ";
             }
-            if (filtro.DtNascimento != null && filtro.DtNascimento.Trim().Equals("") == false)
+            if (filtro.DtNascimento != DateTime.MinValue)
             {
                 sql += " and u.dt_nasc_usuario like @dt_nasc_usuario ";
             }
@@ -118,7 +133,7 @@ namespace ClassesBasicas.Usuario
             {
                 sql += " and u.nm_Telefone like @nm_Telefone ";
             }
-            if (filtro.Status.ToString() != null && filtro.Status.ToString().Trim().Equals("") == false)
+            if (filtro.Status == 0 || filtro.Status == 1)
             {
                 sql += " and u.status_Usuario like @status_Usuario ";
             }
@@ -145,17 +160,17 @@ namespace ClassesBasicas.Usuario
                 cmd.Parameters.Add("@nome_Usuario", SqlDbType.VarChar);
                 cmd.Parameters["@nome_Usuario"].Value = "%" + filtro.NomeUsuario + "%";
             }
-            if (filtro.DtNascimento != null && filtro.DtNascimento.Trim().Equals("") == false)
+            if (filtro.DtNascimento != DateTime.MinValue)
             {
                 cmd.Parameters.Add("@dt_Nasc_Usuario", SqlDbType.VarChar);
-                cmd.Parameters["@dt_Nasc_Usuario"].Value = "%" + filtro.DtNascimento + "%";
+                cmd.Parameters["@dt_Nasc_Usuario"].Value = "%" + filtro.DtNascimento.ToString() + "%";
             }
             if (filtro.NmTelefone != null && filtro.NmTelefone.Trim().Equals("") == false)
             {
                 cmd.Parameters.Add("@nm_Telefone", SqlDbType.VarChar);
                 cmd.Parameters["@nm_Telefone"].Value = "%" + filtro.NmTelefone + "%";
             }
-            if (filtro.Status.ToString() != null && filtro.Status.ToString().Trim().Equals("") == false)
+            if (filtro.Status == 0 || filtro.Status == 1)
             {
                 cmd.Parameters.Add("@status_usuario", SqlDbType.VarChar);
                 cmd.Parameters["@status_usuario"].Value = "%" + filtro.Status.ToString() + "%";
@@ -170,7 +185,7 @@ namespace ClassesBasicas.Usuario
                 cmd.Parameters.Add("@sexo", SqlDbType.VarChar);
                 cmd.Parameters["@sexo"].Value = "%" + filtro.Sexo + "%";
             }
-            //cmd.ExecuteNonQuery();
+
 
             SqlDataReader rd = cmd.ExecuteReader();
 
@@ -179,7 +194,7 @@ namespace ClassesBasicas.Usuario
                 UsuarioBC usuario = new UsuarioBC();
                 usuario.CpfUsuario = rd["cpf_usuario"].ToString(); //(rd.GetString(0));
                 usuario.NomeUsuario = rd["nome_Usuario"].ToString(); //(rd.GetString(1));
-                usuario.DtNascimento = rd["dt_Nasc_Usuario"].ToString(); //(rd.GetString(2));
+                usuario.DtNascimento =  Convert.ToDateTime(rd["dt_Nasc_Usuario"]); //(rd.GetString(2));
                 usuario.NmTelefone = rd["nm_Telefone"].ToString(); //(rd.GetString(3));
                 usuario.Status = Convert.ToInt32(rd["status_usuario"]); //(rd.GetInt32(4));
                 usuario.Endereco = rd["endereco_Usuario"].ToString(); //(rd.GetString(5));

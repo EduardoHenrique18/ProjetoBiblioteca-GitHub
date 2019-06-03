@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassesBasicas.Pagamento;
+using System.Runtime.Serialization;
 using ClassesBasicas.Aluguel;
 
 
 namespace ClassesBasicas.Usuario
 {
+    [DataContract]
     public class UsuarioBC
     {
         private String cpfUsuario;
         private String nomeUsuario;
-        private String dtNascimento;
+        private DateTime dtNascimento;
         private String nmTelefone;
         private int status;
         private String endereco;
@@ -21,23 +19,28 @@ namespace ClassesBasicas.Usuario
 
        
         private ICollection<AluguelBC> aluguel;
-        private ICollection<PagamentoBC> pagamento;
 
         
         public UsuarioBC()
         {
-            this.Status = 0;          
+            this.Status = 1;          
         }
-
-        public String CpfUsuario { get => cpfUsuario; set => cpfUsuario = value; }
-        public String NomeUsuario { get => nomeUsuario; set => nomeUsuario = value; }
-        public String DtNascimento { get => dtNascimento; set => dtNascimento = value; }
-        public String NmTelefone { get => nmTelefone; set => nmTelefone = value; }
+        [DataMember(IsRequired = true)]
+        public string CpfUsuario { get => cpfUsuario; set => cpfUsuario = value; }
+        [DataMember(IsRequired = true)]
+        public string NomeUsuario { get => nomeUsuario; set => nomeUsuario = value; }
+        [DataMember(IsRequired = true)]
+        public DateTime DtNascimento { get => dtNascimento; set => dtNascimento = value; }
+        [DataMember(IsRequired = true)]
+        public string NmTelefone { get => nmTelefone; set => nmTelefone = value; }
+        [DataMember(IsRequired = true)]
         public int Status { get => status; set => status = value; }
+        [DataMember(IsRequired = true)]
         public string Endereco { get => endereco; set => endereco = value; }
+        [DataMember(IsRequired = true)]
         public string Sexo { get => sexo; set => sexo = value; }
-        internal ICollection<AluguelBC> Aluguel { get => aluguel; set => aluguel = value; }
-        internal ICollection<PagamentoBC> Pagamento { get => pagamento; set => pagamento = value; }
-       
+        [DataMember(IsRequired = true)]
+        public ICollection<AluguelBC> Aluguel { get => aluguel; set => aluguel = value; }
+        
     }
 }

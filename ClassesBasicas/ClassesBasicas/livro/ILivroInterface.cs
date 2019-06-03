@@ -12,6 +12,8 @@ namespace ClassesBasicas.Livro
         void AlterarLivro(LivroBC l);
         void RemoverLivro(LivroBC l);
         List<LivroBC> ListarLivros(LivroBC l);
+        List<LivroBC> ListarTodosLivros();
+
 
     }
 }

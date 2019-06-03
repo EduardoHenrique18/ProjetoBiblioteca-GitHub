@@ -122,7 +122,6 @@ namespace ClassesBasicas.Livro
             {
                 sql += " and l.autor_Livro like @autor_Livro ";
             }
-            Console.WriteLine(sql);
            
 
             
@@ -155,7 +154,6 @@ namespace ClassesBasicas.Livro
                 cmd.Parameters["@autor_Livro"].Value = "%" + filtro.Autor + "%";
             }
            
-            //cmd.ExecuteNonQuery();
 
             SqlDataReader rd = cmd.ExecuteReader();
 
@@ -202,5 +200,36 @@ namespace ClassesBasicas.Livro
             }
         }
         #endregion
+        public List<LivroBC> ListarTodosLivros()
+        {
+            List<LivroBC> retorno = new List<LivroBC>();
+
+            //abrir a conexão
+            this.AbrirConexao();
+            //instrução sql correspondente a inserção do aluno
+            String sql = "select l.id_Livro, l.titulo_Livro, l.editora_Livro, l.situacao_Livro, l.autor_Livro";
+            sql += " from Livro as l ";
+            sql += "Where l.id_Livro > 0 ";
+           
+            //instrucao a ser executada
+            SqlCommand cmd = new SqlCommand(sql, this.sqlConn);
+          
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            while (rd.Read())
+            {
+                LivroBC livro = new LivroBC();
+                livro.CodLivro = Convert.ToInt32(rd["id_Livro"]); //(rd.GetString(0));
+                livro.TituloLivro = rd["titulo_Livro"].ToString(); //(rd.GetString(1));
+                livro.EditoraLivro = rd["editora_Livro"].ToString(); //(rd.GetString(2));
+                livro.Situaçao = Convert.ToInt32(rd["situacao_Livro"]); //(rd.GetInt32(4));
+                livro.Autor = rd["autor_Livro"].ToString(); //(rd.GetString(5));
+                retorno.Add(livro);
+            }
+
+            return retorno;
+
+        }
+
     }
 }

@@ -86,30 +86,7 @@ namespace ConsoleApp1.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBibliotecaService/DeltetarAluguel", ReplyAction="http://tempuri.org/IBibliotecaService/DeltetarAluguelResponse")]
         System.Threading.Tasks.Task DeltetarAluguelAsync(ClassesBasicas.Aluguel.AluguelBC a);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBibliotecaService/CadastrarPagamento", ReplyAction="http://tempuri.org/IBibliotecaService/CadastrarPagamentoResponse")]
-        void CadastrarPagamento(ClassesBasicas.Pagamento.PagamentoBC p);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBibliotecaService/CadastrarPagamento", ReplyAction="http://tempuri.org/IBibliotecaService/CadastrarPagamentoResponse")]
-        System.Threading.Tasks.Task CadastrarPagamentoAsync(ClassesBasicas.Pagamento.PagamentoBC p);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBibliotecaService/AlterarPagamento", ReplyAction="http://tempuri.org/IBibliotecaService/AlterarPagamentoResponse")]
-        void AlterarPagamento(ClassesBasicas.Pagamento.PagamentoBC p);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBibliotecaService/AlterarPagamento", ReplyAction="http://tempuri.org/IBibliotecaService/AlterarPagamentoResponse")]
-        System.Threading.Tasks.Task AlterarPagamentoAsync(ClassesBasicas.Pagamento.PagamentoBC p);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBibliotecaService/ListarPagamento", ReplyAction="http://tempuri.org/IBibliotecaService/ListarPagamentoResponse")]
-        ClassesBasicas.Pagamento.PagamentoBC[] ListarPagamento(ClassesBasicas.Pagamento.PagamentoBC filtro);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBibliotecaService/ListarPagamento", ReplyAction="http://tempuri.org/IBibliotecaService/ListarPagamentoResponse")]
-        System.Threading.Tasks.Task<ClassesBasicas.Pagamento.PagamentoBC[]> ListarPagamentoAsync(ClassesBasicas.Pagamento.PagamentoBC filtro);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBibliotecaService/DeletarPagamento", ReplyAction="http://tempuri.org/IBibliotecaService/DeletarPagamentoResponse")]
-        void DeletarPagamento(ClassesBasicas.Pagamento.PagamentoBC p);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBibliotecaService/DeletarPagamento", ReplyAction="http://tempuri.org/IBibliotecaService/DeletarPagamentoResponse")]
-        System.Threading.Tasks.Task DeletarPagamentoAsync(ClassesBasicas.Pagamento.PagamentoBC p);
+         
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBibliotecaService/LancarMulta", ReplyAction="http://tempuri.org/IBibliotecaService/LancarMultaResponse")]
         void LancarMulta(ClassesBasicas.Usuario.UsuarioBC u);
@@ -258,39 +235,7 @@ namespace ConsoleApp1.ServiceReference1 {
         public System.Threading.Tasks.Task DeltetarAluguelAsync(ClassesBasicas.Aluguel.AluguelBC a) {
             return base.Channel.DeltetarAluguelAsync(a);
         }
-        
-        public void CadastrarPagamento(ClassesBasicas.Pagamento.PagamentoBC p) {
-            base.Channel.CadastrarPagamento(p);
-        }
-        
-        public System.Threading.Tasks.Task CadastrarPagamentoAsync(ClassesBasicas.Pagamento.PagamentoBC p) {
-            return base.Channel.CadastrarPagamentoAsync(p);
-        }
-        
-        public void AlterarPagamento(ClassesBasicas.Pagamento.PagamentoBC p) {
-            base.Channel.AlterarPagamento(p);
-        }
-        
-        public System.Threading.Tasks.Task AlterarPagamentoAsync(ClassesBasicas.Pagamento.PagamentoBC p) {
-            return base.Channel.AlterarPagamentoAsync(p);
-        }
-        
-        public ClassesBasicas.Pagamento.PagamentoBC[] ListarPagamento(ClassesBasicas.Pagamento.PagamentoBC filtro) {
-            return base.Channel.ListarPagamento(filtro);
-        }
-        
-        public System.Threading.Tasks.Task<ClassesBasicas.Pagamento.PagamentoBC[]> ListarPagamentoAsync(ClassesBasicas.Pagamento.PagamentoBC filtro) {
-            return base.Channel.ListarPagamentoAsync(filtro);
-        }
-        
-        public void DeletarPagamento(ClassesBasicas.Pagamento.PagamentoBC p) {
-            base.Channel.DeletarPagamento(p);
-        }
-        
-        public System.Threading.Tasks.Task DeletarPagamentoAsync(ClassesBasicas.Pagamento.PagamentoBC p) {
-            return base.Channel.DeletarPagamentoAsync(p);
-        }
-        
+ 
         public void LancarMulta(ClassesBasicas.Usuario.UsuarioBC u) {
             base.Channel.LancarMulta(u);
         }

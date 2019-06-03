@@ -7,7 +7,6 @@ using System.ServiceModel.Web;
 using System.Text;
 using ClassesBasicas.Aluguel;
 using ClassesBasicas.Livro;
-using ClassesBasicas.Pagamento;
 using ClassesBasicas.Usuario;
 using Newtonsoft.Json;
 
@@ -25,27 +24,16 @@ namespace WcfBiblioteca2
         public void AlterarLivro(LivroBC l)
         {
             throw new NotImplementedException();
-        }
-
-        public void AlterarPagamento(PagamentoBC p)
-        {
-            throw new NotImplementedException();
-        }
+        }   
 
         public void AlterarUsuario(UsuarioBC u)
         {
             throw new NotImplementedException();
         }
 
-        public void BaixaMulta(UsuarioBC u)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public void BloquearUsuario(UsuarioBC u)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public void CadastrarAluguel(AluguelBC a)
         {
@@ -57,12 +45,19 @@ namespace WcfBiblioteca2
             throw new NotImplementedException();
         }
 
-        public void CadastrarPagamento(PagamentoBC p)
+        public void CadastrarUsuario(UsuarioBC u)
         {
             throw new NotImplementedException();
         }
 
-        public void CadastrarUsuario(UsuarioBC u)
+        public void ConfirmarEntrega(string a) 
+        {
+            AluguelBC obj = JsonConvert.DeserializeObject<AluguelBC>(a);
+            AluguelNegocio neg = new AluguelNegocio();
+            neg.ConfirmarEntrega(obj);
+        }
+
+        public void DeletarAluguel(AluguelBC a)
         {
             throw new NotImplementedException();
         }
@@ -72,30 +67,13 @@ namespace WcfBiblioteca2
             throw new NotImplementedException();
         }
 
-        public void DeletarPagamento(PagamentoBC p)
-        {
-            throw new NotImplementedException();
-        }
-
         public void DeletarUsuario(UsuarioBC u)
         {
             throw new NotImplementedException();
         }
 
-        public void DeltetarAluguel(AluguelBC a)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void EmitirNF(UsuarioBC u)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void LancarMulta(UsuarioBC u)
-        {
-            throw new NotImplementedException();
-        }
         //TESTE ----------------------
         public string ListarAleatorio()
         {
@@ -103,9 +81,10 @@ namespace WcfBiblioteca2
             return a;
         }
         // ---------------
-        public List<AluguelBC> ListarAluguel(AluguelBC filtro)
+        public List<AluguelBC> ListarAluguel()
         {
-            throw new NotImplementedException();
+            AluguelNegocio neg = new AluguelNegocio();
+            return neg.ListarAluguel();
         }
         public List<LivroBC> ListarLivro(string l)
         {
@@ -114,9 +93,10 @@ namespace WcfBiblioteca2
             return new LivroNegocio().ListarLivros(result);
         }
 
-        public List<PagamentoBC> ListarPagamento(PagamentoBC filtro)
+        public List<LivroBC> ListarTodosLivros()
         {
-            throw new NotImplementedException();
+            LivroNegocio neg = new LivroNegocio();
+            return neg.ListarTodosLivros();
         }
 
         public List<UsuarioBC> ListarUsuario(UsuarioBC filtro)

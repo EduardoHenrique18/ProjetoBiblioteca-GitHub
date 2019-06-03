@@ -63,16 +63,11 @@
     <Compile Include="aluguel\AluguelDados.cs" />
     <Compile Include="aluguel\AluguelNegocio.cs" />
     <Compile Include="aluguel\IAluguelInterface.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="conexão\ConexãoBD.cs" />
     <Compile Include="livro\ILivroInterface.cs" />
     <Compile Include="livro\LivroBC.cs" />
     <Compile Include="livro\LivroDados.cs" />
     <Compile Include="livro\LivroNegocio.cs" />
-    <Compile Include="pagamento\IPagamentoInterface.cs" />
-    <Compile Include="pagamento\PagamentoBC.cs" />
-    <Compile Include="pagamento\PagamentoDados.cs" />
-    <Compile Include="pagamento\PagamentoNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="usuario\IUsuarioInterface.cs" />
     <Compile Include="usuario\UsuarioBC.cs" />
